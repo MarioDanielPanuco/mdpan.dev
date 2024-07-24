@@ -8,6 +8,3 @@ FROM ghcr.io/static-web-server/static-web-server:2
 WORKDIR /
 COPY --from=zola /myBlog/public /public
 
-# Expose the port that static-web-server will listen on
-EXPOSE 8080
-
