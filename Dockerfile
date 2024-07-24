@@ -9,6 +9,5 @@ WORKDIR /
 COPY --from=zola /myBlog/public /public
 
 # Expose the port that static-web-server will listen on
-ENV PORT 8080
 EXPOSE 8080
 
