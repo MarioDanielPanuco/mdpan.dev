@@ -8,3 +8,4 @@ FROM ghcr.io/static-web-server/static-web-server:2
 WORKDIR /
 COPY --from=zola /myBlog/public /public
 
+EXPOSE 8080
