@@ -24,7 +24,14 @@ This talk is one I'll have to go back to. Very interesting topic in the field of
 
 ### rlst
 
+# Thursday 
 
+## RSRS 
+
+Question: 
+Some of your talk is very relevant to my research on Fast-Multipole Graph Neural Operators. Are there some papers you would recommend on
+
+So ZZ
 
 
 ## Takeaways
