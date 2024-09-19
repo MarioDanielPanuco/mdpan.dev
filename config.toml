@@ -2,7 +2,7 @@ title = "mdpan.dev"
 
 # See this for more options: https://github.com/not-matthias/apollo/blob/main/config.toml#L14
 # The URL the site will be built for
-base_url = "/"
+base_url = "https://mdpan.dev/"
 
 theme = "apollo"
 description = "Personal site and blog for Mario Daniel Panuco"
