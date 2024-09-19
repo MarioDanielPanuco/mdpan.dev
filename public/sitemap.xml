@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://mdpan.dev/blog/</loc>
+        <loc>https://mdpan.dev/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/about/</loc>
+        <loc>https://mdpan.dev/about/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/posts/</loc>
+        <loc>https://mdpan.dev/posts/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/posts/configuration/</loc>
+        <loc>https://mdpan.dev/posts/configuration/</loc>
         <lastmod>2024-07-09</lastmod>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/posts/graph-neural-op/</loc>
+        <loc>https://mdpan.dev/posts/graph-neural-op/</loc>
         <lastmod>2024-07-15</lastmod>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/posts/markdown/</loc>
+        <loc>https://mdpan.dev/posts/markdown/</loc>
         <lastmod>2022-05-01</lastmod>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/posts/math-symbol/</loc>
+        <loc>https://mdpan.dev/posts/math-symbol/</loc>
         <lastmod>2023-01-06</lastmod>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/posts/page/1/</loc>
+        <loc>https://mdpan.dev/posts/page/1/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/posts/political-extremism-online-tech/</loc>
+        <loc>https://mdpan.dev/posts/political-extremism-online-tech/</loc>
         <lastmod>2024-07-17</lastmod>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/posts/shortcode/</loc>
+        <loc>https://mdpan.dev/posts/shortcode/</loc>
         <lastmod>2024-06-14</lastmod>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/projects/</loc>
+        <loc>https://mdpan.dev/projects/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/projects/project-1/</loc>
+        <loc>https://mdpan.dev/projects/project-1/</loc>
         <lastmod>2024-07-16</lastmod>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/projects/project-2/</loc>
+        <loc>https://mdpan.dev/projects/project-2/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/projects/project-3/</loc>
+        <loc>https://mdpan.dev/projects/project-3/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/projects/project-4/</loc>
+        <loc>https://mdpan.dev/projects/project-4/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/projects/project-5/</loc>
+        <loc>https://mdpan.dev/projects/project-5/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/resume/</loc>
+        <loc>https://mdpan.dev/resume/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/rust-sci-2024/</loc>
+        <loc>https://mdpan.dev/rust-sci-2024/</loc>
         <lastmod>2024-07-17</lastmod>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/tags/</loc>
+        <loc>https://mdpan.dev/tags/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/tags/blog/</loc>
+        <loc>https://mdpan.dev/tags/blog/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/tags/documentation/</loc>
+        <loc>https://mdpan.dev/tags/documentation/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/tags/example/</loc>
+        <loc>https://mdpan.dev/tags/example/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/tags/opinion/</loc>
+        <loc>https://mdpan.dev/tags/opinion/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/tags/political/</loc>
+        <loc>https://mdpan.dev/tags/political/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/tags/projects/</loc>
+        <loc>https://mdpan.dev/tags/projects/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/tags/rust/</loc>
+        <loc>https://mdpan.dev/tags/rust/</loc>
     </url>
     <url>
-        <loc>https://mdpan.dev/blog/teaching/</loc>
+        <loc>https://mdpan.dev/teaching/</loc>
     </url>
 </urlset>

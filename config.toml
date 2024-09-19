@@ -2,22 +2,19 @@ title = "mdpan.dev"
 
 # See this for more options: https://github.com/not-matthias/apollo/blob/main/config.toml#L14
 # The URL the site will be built for
-base_url = "https://mdpan.dev/blog"
+base_url = "https://mdpan.dev/"
 
 theme = "apollo"
-
-taxonomies = [{ name = "tags" }]
 description = "Personal site and blog for Mario Daniel Panuco"
-default_language = "en"
+
 build_search_index = false 
-generate_feeds = true 
+taxonomies = [{ name = "tags" }]
+default_language = "en"
+generate_feeds = true
 minify_html = true 
 
 
-hard_link_static = true
-
-
-
+# hard_link_static = false
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
@@ -29,12 +26,13 @@ compile_sass = true
 
 # When set to "true", emoji aliases translated to their corresponding
 # Unicode emoji equivalent in the rendered Markdown files. (e.g.: :smile: => 😄)
-render_emoji = true
+# render_emoji = true
 
 
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
+highlight_theme = "ayu-light"
 
 # [search]
 # # Whether to include the title of the page/section in the index
@@ -49,16 +47,12 @@ highlight_code = true
 # include_content = true
 
 # index_format = "elasticlunr_javascript" # or "elasticlunr_json"
-[link_checker]
-internal_level = "warn"
+#[link_checker]
+# internal_level = "warn"
 
 [extra]
 theme = "auto"
 favicon = "/icons/favicon.ico"
-socials = [
-    { name = "twitter", url = "https://twitter.com/roctodp", icon = "twitter" },
-    { name = "github", url = "https://github.com/mariodanielpancuo", icon = "github" },
-]
 
 toc = true
 use_cdn = false
@@ -76,3 +70,10 @@ menu = [
     { name = "resume.pdf", url = "output_filename.pdf", weight = 4 },
     { name = "/tags", url = "/tags", weight = 5 },
 ]
+
+socials = [
+    { name = "twitter", url = "https://twitter.com/roctodp", icon = "twitter" },
+    { name = "github", url = "https://github.com/mariodanielpancuo", icon = "github" },
+]
+
+custom_css = []

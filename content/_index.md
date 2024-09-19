@@ -12,9 +12,8 @@ Hello there! I'm Mario Daniel Panuco. I recently finished a Masters student in S
 Outside of academia, my interests are in competitive esports and digital/analog sound design (it's all sines and cosines!!).
 
 
-You can read about some of my teaching experience at [/teaching](@/teaching.md)
 
 
-{{ note(clickable=true, hidden = true, header="Note!", body="This website was made using Zola") }}
+
 
 Checkout all the [options you can configure](./posts/configuration) and the [example pages](./tags/example/).

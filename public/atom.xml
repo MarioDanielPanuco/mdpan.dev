@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>mdpan.dev</title>
     <subtitle>Personal site and blog for Mario Daniel Panuco</subtitle>
-    <link rel="self" type="application/atom+xml" href="https://mdpan.dev/blog/atom.xml"/>
-    <link rel="alternate" type="text/html" href="https://mdpan.dev/blog"/>
+    <link rel="self" type="application/atom+xml" href="https://mdpan.dev/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://mdpan.dev/"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2024-07-17T00:00:00+00:00</updated>
-    <id>https://mdpan.dev/blog/atom.xml</id>
+    <id>https://mdpan.dev/atom.xml</id>
     <entry xml:lang="en">
         <title>Political Extremism In The Online Tech Sphere</title>
         <published>2024-07-17T00:00:00+00:00</published>
@@ -20,10 +20,10 @@
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://mdpan.dev/blog/posts/political-extremism-online-tech/"/>
-        <id>https://mdpan.dev/blog/posts/political-extremism-online-tech/</id>
+        <link rel="alternate" type="text/html" href="https://mdpan.dev/posts/political-extremism-online-tech/"/>
+        <id>https://mdpan.dev/posts/political-extremism-online-tech/</id>
         
-        <content type="html" xml:base="https://mdpan.dev/blog/posts/political-extremism-online-tech/">&lt;div class=&quot;note-container&quot;&gt;
+        <content type="html" xml:base="https://mdpan.dev/posts/political-extremism-online-tech/">&lt;div class=&quot;note-container&quot;&gt;
   
     &lt;button class=&quot;note-toggle&quot;&gt;
       
@@ -102,16 +102,16 @@ This article proposes well-meaning policies to strengthen America&#x27;s technol
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://mdpan.dev/blog/rust-sci-2024/"/>
-        <id>https://mdpan.dev/blog/rust-sci-2024/</id>
+        <link rel="alternate" type="text/html" href="https://mdpan.dev/rust-sci-2024/"/>
+        <id>https://mdpan.dev/rust-sci-2024/</id>
         
-        <content type="html" xml:base="https://mdpan.dev/blog/rust-sci-2024/">&lt;h2 id=&quot;my-favorite-talks-moments&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#my-favorite-talks-moments&quot; aria-label=&quot;Anchor link for: my-favorite-talks-moments&quot;&gt;My favorite talks&#x2F;moments&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+        <content type="html" xml:base="https://mdpan.dev/rust-sci-2024/">&lt;h2 id=&quot;my-favorite-talks-moments&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#my-favorite-talks-moments&quot; aria-label=&quot;Anchor link for: my-favorite-talks-moments&quot;&gt;My favorite talks&#x2F;moments&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
 &lt;h3 id=&quot;entangled&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#entangled&quot; aria-label=&quot;Anchor link for: entangled&quot;&gt;Entangled&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
 &lt;p&gt;While not a talk focused much on Rust, this was my first introduction into the concept of _. I believe this approach to software engineering has benefits mainly to research lab environments, rather than tech companies. Due to the ability to properly document code while writing the software itself. The most comparable programming experience this programming paradigm would be development through Jupyter notebooks, however, I have issues with Jupyter notebooks. I believe, outside of data science, Jupyter notebooks are mainly a powerful educational tool, rather than a development tool.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;cfsem&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#cfsem&quot; aria-label=&quot;Anchor link for: cfsem&quot;&gt;Cfsem&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
 &lt;p&gt;This talk is one I&#x27;ll have to go back to. Very interesting topic in the field of fusion. I wonder if there are applications of my research into Neural Operators in this field.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;sophus-rs-hauke-strasdat&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#sophus-rs-hauke-strasdat&quot; aria-label=&quot;Anchor link for: sophus-rs-hauke-strasdat&quot;&gt;Sophus-rs (Hauke Strasdat)&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
-&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h3 id=&quot;rlst&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#rlst&quot; aria-label=&quot;Anchor link for: rlst&quot;&gt;rlst&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
 &lt;h1 id=&quot;thursday&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#thursday&quot; aria-label=&quot;Anchor link for: thursday&quot;&gt;Thursday&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
@@ -137,10 +137,10 @@ Some of your talk is very relevant to my research on Fast-Multipole Graph Neural
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://mdpan.dev/blog/projects/project-1/"/>
-        <id>https://mdpan.dev/blog/projects/project-1/</id>
+        <link rel="alternate" type="text/html" href="https://mdpan.dev/projects/project-1/"/>
+        <id>https://mdpan.dev/projects/project-1/</id>
         
-        <content type="html" xml:base="https://mdpan.dev/blog/projects/project-1/">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mariodanielpanuco&#x2F;plankai&quot;&gt;Source Code&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://mdpan.dev/projects/project-1/">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mariodanielpanuco&#x2F;plankai&quot;&gt;Source Code&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -157,10 +157,10 @@ Some of your talk is very relevant to my research on Fast-Multipole Graph Neural
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://mdpan.dev/blog/posts/graph-neural-op/"/>
-        <id>https://mdpan.dev/blog/posts/graph-neural-op/</id>
+        <link rel="alternate" type="text/html" href="https://mdpan.dev/posts/graph-neural-op/"/>
+        <id>https://mdpan.dev/posts/graph-neural-op/</id>
         
-        <content type="html" xml:base="https://mdpan.dev/blog/posts/graph-neural-op/">&lt;h1 id=&quot;graph-neural-networks&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#graph-neural-networks&quot; aria-label=&quot;Anchor link for: graph-neural-networks&quot;&gt;Graph Neural Networks&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+        <content type="html" xml:base="https://mdpan.dev/posts/graph-neural-op/">&lt;h1 id=&quot;graph-neural-networks&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#graph-neural-networks&quot; aria-label=&quot;Anchor link for: graph-neural-networks&quot;&gt;Graph Neural Networks&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
 &lt;h1 id=&quot;operator-learning&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#operator-learning&quot; aria-label=&quot;Anchor link for: operator-learning&quot;&gt;Operator Learning&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
 &lt;h2 id=&quot;multipole&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#multipole&quot; aria-label=&quot;Anchor link for: multipole&quot;&gt;Multipole&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
 &lt;p&gt;A great concern when dealing with GNOs is minizming pairwise interactions across the discretized domain, i.e., reducing edges in our network.&lt;&#x2F;p&gt;
@@ -182,10 +182,10 @@ $$&lt;&#x2F;p&gt;
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://mdpan.dev/blog/posts/configuration/"/>
-        <id>https://mdpan.dev/blog/posts/configuration/</id>
+        <link rel="alternate" type="text/html" href="https://mdpan.dev/posts/configuration/"/>
+        <id>https://mdpan.dev/posts/configuration/</id>
         
-        <content type="html" xml:base="https://mdpan.dev/blog/posts/configuration/">&lt;h2 id=&quot;theme-mode-theme&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#theme-mode-theme&quot; aria-label=&quot;Anchor link for: theme-mode-theme&quot;&gt;Theme Mode (&lt;code&gt;theme&lt;&#x2F;code&gt;)&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+        <content type="html" xml:base="https://mdpan.dev/posts/configuration/">&lt;h2 id=&quot;theme-mode-theme&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#theme-mode-theme&quot; aria-label=&quot;Anchor link for: theme-mode-theme&quot;&gt;Theme Mode (&lt;code&gt;theme&lt;&#x2F;code&gt;)&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
 &lt;p&gt;Sets the color theme for your blog.&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;Type: String&lt;&#x2F;li&gt;
@@ -199,11 +199,11 @@ $$&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;Type: Array of objects&lt;&#x2F;li&gt;
 &lt;li&gt;Default: []&lt;&#x2F;li&gt;
-&lt;li&gt;Usage:&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;menu &lt;&#x2F;span&gt;&lt;span&gt;= [
-&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;posts&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;posts&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span&gt;},
-&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;projects&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;projects&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;2 &lt;&#x2F;span&gt;&lt;span&gt;},
-&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;about&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;about&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;3 &lt;&#x2F;span&gt;&lt;span&gt;},
-&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;tags&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;tags&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;4 &lt;&#x2F;span&gt;&lt;span&gt;},
+&lt;li&gt;Usage:&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;menu &lt;&#x2F;span&gt;&lt;span&gt;= [
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;posts&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;posts&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;projects&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;projects&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;2 &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;about&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;about&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;3 &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;tags&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;tags&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;4 &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
 &lt;&#x2F;span&gt;&lt;span&gt;]
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;&#x2F;li&gt;
@@ -213,9 +213,9 @@ $$&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;Type: Array of objects&lt;&#x2F;li&gt;
 &lt;li&gt;Default: []&lt;&#x2F;li&gt;
-&lt;li&gt;Usage:&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;socials &lt;&#x2F;span&gt;&lt;span&gt;= [
-&lt;&#x2F;span&gt;&lt;span&gt;  { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;twitter&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;https:&#x2F;&#x2F;twitter.com&#x2F;not_matthias&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;icon &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;twitter&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; },
-&lt;&#x2F;span&gt;&lt;span&gt;  { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;github&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;not-matthias&#x2F;&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;icon &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;github&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; },
+&lt;li&gt;Usage:&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;socials &lt;&#x2F;span&gt;&lt;span&gt;= [
+&lt;&#x2F;span&gt;&lt;span&gt;  { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;twitter&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;https:&#x2F;&#x2F;twitter.com&#x2F;not_matthias&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;icon &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;twitter&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;  { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;github&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;https:&#x2F;&#x2F;github.com&#x2F;not-matthias&#x2F;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;icon &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;github&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
 &lt;&#x2F;span&gt;&lt;span&gt;]
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;&#x2F;li&gt;
@@ -270,14 +270,14 @@ $$&lt;&#x2F;p&gt;
 &lt;p&gt;When enabled, you can create expandable&#x2F;collapsible note sections in your blog posts.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;source-code-repo-view&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#source-code-repo-view&quot; aria-label=&quot;Anchor link for: source-code-repo-view&quot;&gt;Source code (&lt;code&gt;repo_view&lt;&#x2F;code&gt;)&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
 &lt;p&gt;Do you want to link to the source code of your blog post? You can turn on the &lt;code&gt;repo_view&lt;&#x2F;code&gt; inside the &lt;code&gt;[extra]&lt;&#x2F;code&gt; section of your blog post.&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[extra]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;repo_view &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;repo_url &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;not-matthias&#x2F;apollo&#x2F;tree&#x2F;main&#x2F;content&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Alternatively add the repo here
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;extra&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;repo_view &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;repo_url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;https:&#x2F;&#x2F;github.com&#x2F;not-matthias&#x2F;apollo&#x2F;tree&#x2F;main&#x2F;content&amp;quot;   &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Alternatively add the repo here
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The &lt;code&gt;repo_url&lt;&#x2F;code&gt; can be set in the &lt;code&gt;[extra]&lt;&#x2F;code&gt; section or in your &lt;code&gt;config.toml&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;anchor-links&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#anchor-links&quot; aria-label=&quot;Anchor link for: anchor-links&quot;&gt;Anchor Links&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
 &lt;p&gt;You can add anchor links by adding the following to your &lt;code&gt;_index.md&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;insert_anchor_links &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;heading&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;insert_anchor_links &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;heading&amp;quot;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 </content>
         
@@ -295,10 +295,10 @@ $$&lt;&#x2F;p&gt;
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://mdpan.dev/blog/posts/shortcode/"/>
-        <id>https://mdpan.dev/blog/posts/shortcode/</id>
+        <link rel="alternate" type="text/html" href="https://mdpan.dev/posts/shortcode/"/>
+        <id>https://mdpan.dev/posts/shortcode/</id>
         
-        <content type="html" xml:base="https://mdpan.dev/blog/posts/shortcode/">&lt;h2 id=&quot;note&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#note&quot; aria-label=&quot;Anchor link for: note&quot;&gt;Note&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+        <content type="html" xml:base="https://mdpan.dev/posts/shortcode/">&lt;h2 id=&quot;note&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#note&quot; aria-label=&quot;Anchor link for: note&quot;&gt;Note&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
 &lt;p&gt;Here is an example of the &lt;code&gt;note&lt;&#x2F;code&gt; shortcode:&lt;&#x2F;p&gt;
 &lt;p&gt;This one is static!
 &lt;div class=&quot;note-container&quot;&gt;
@@ -340,7 +340,7 @@ $$&lt;&#x2F;p&gt;
 &lt;&#x2F;div&gt;
 &lt;&#x2F;p&gt;
 &lt;p&gt;Syntax:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;{{ note(header=&amp;quot;Note!&amp;quot;, body=&amp;quot;This blog assumes basic terminal maturity&amp;quot;) }}
+&lt;pre style=&quot;background-color:#fafafa;color:#61676c;&quot;&gt;&lt;code&gt;&lt;span&gt;{{ note(header=&amp;quot;Note!&amp;quot;, body=&amp;quot;This blog assumes basic terminal maturity&amp;quot;) }}
 &lt;&#x2F;span&gt;&lt;span&gt;{{ note(clickable=true, hidden = true, header=&amp;quot;Quiz!&amp;quot;, body=&amp;quot;The answer to the quiz!&amp;quot;) }}
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;You can also use some HTML in the text:
@@ -361,7 +361,7 @@ $$&lt;&#x2F;p&gt;
 &lt;&#x2F;div&gt;
 &lt;&#x2F;p&gt;
 &lt;p&gt;Literal shortcode:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;{{ note(header=&amp;quot;Note!&amp;quot;, body=&amp;quot;&amp;lt;h1&amp;gt;This blog assumes basic terminal maturity&amp;lt;&#x2F;h1&amp;gt;&amp;quot;) }}
+&lt;pre style=&quot;background-color:#fafafa;color:#61676c;&quot;&gt;&lt;code&gt;&lt;span&gt;{{ note(header=&amp;quot;Note!&amp;quot;, body=&amp;quot;&amp;lt;h1&amp;gt;This blog assumes basic terminal maturity&amp;lt;&#x2F;h1&amp;gt;&amp;quot;) }}
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Pretty cool, right?&lt;&#x2F;p&gt;
 &lt;p&gt;Finally, you can do something like this (hopefully):&lt;&#x2F;p&gt;
@@ -380,8 +380,8 @@ $$&lt;&#x2F;p&gt;
     &lt;div class=&quot;note-content&quot; style=&quot;display: block;&quot;&gt;
     
     &lt;h1 id=&quot;hello-this-is-markdown-inside-a-note-shortcode&quot;&gt;Hello this is markdown inside a note shortcode&lt;&#x2F;h1&gt;
-&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
-&lt;&#x2F;span&gt;&lt;span&gt;    println!(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Hello World&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;);
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07171;&quot;&gt;println!&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;Hello World&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
 &lt;&#x2F;span&gt;&lt;span&gt;}
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;We can&#x27;t call another shortcode inside a shortcode, but this is good enough.&lt;&#x2F;p&gt;
@@ -390,19 +390,19 @@ $$&lt;&#x2F;p&gt;
   
 &lt;&#x2F;div&gt;
 &lt;p&gt;Here is the raw markdown:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;markdown&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-markdown &quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span&gt;{{ note(clickable=true, header=&amp;quot;Quiz!&amp;quot;) }}
+&lt;pre data-lang=&quot;markdown&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-markdown &quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span&gt;{{ note(clickable=true, header=&amp;quot;Quiz!&amp;quot;) }}
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;# Hello this is markdown inside a note shortcode
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#fa6e32;&quot;&gt;# &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#399ee6;&quot;&gt;Hello this is markdown inside a note shortcode
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\`\`\`&lt;&#x2F;span&gt;&lt;span&gt;rust
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4cbf99;&quot;&gt;\`\`\`&lt;&#x2F;span&gt;&lt;span&gt;rust
 &lt;&#x2F;span&gt;&lt;span&gt;fn main() {
 &lt;&#x2F;span&gt;&lt;span&gt;    println!(&amp;quot;Hello World&amp;quot;);
 &lt;&#x2F;span&gt;&lt;span&gt;}
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\`\`\`
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4cbf99;&quot;&gt;\`\`\`
 &lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;We can&amp;#39;t call another shortcode inside a shortcode, but this is good enough.
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;{{&#x2F;* end &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*&#x2F;}}
+&lt;&#x2F;span&gt;&lt;span&gt;{{&#x2F;* end &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#f07171;&quot;&gt;*&#x2F;}}
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Finally, we have center
 &lt;div class=&quot;note-container&quot;&gt;
@@ -422,7 +422,7 @@ $$&lt;&#x2F;p&gt;
   
 &lt;&#x2F;div&gt;
 &lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;markdown&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-markdown &quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span&gt;{{ note(center=true, header=&amp;quot;Centered Text&amp;quot;, body=&amp;quot;This is centered text&amp;quot;) }}
+&lt;pre data-lang=&quot;markdown&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-markdown &quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span&gt;{{ note(center=true, header=&amp;quot;Centered Text&amp;quot;, body=&amp;quot;This is centered text&amp;quot;) }}
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;It works good enough for me!&lt;&#x2F;p&gt;
 </content>
@@ -441,10 +441,10 @@ $$&lt;&#x2F;p&gt;
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://mdpan.dev/blog/posts/math-symbol/"/>
-        <id>https://mdpan.dev/blog/posts/math-symbol/</id>
+        <link rel="alternate" type="text/html" href="https://mdpan.dev/posts/math-symbol/"/>
+        <id>https://mdpan.dev/posts/math-symbol/</id>
         
-        <content type="html" xml:base="https://mdpan.dev/blog/posts/math-symbol/">&lt;p&gt;Note: This requires the &lt;code&gt;mathjax&lt;&#x2F;code&gt; and &lt;code&gt;mathjax_dollar_inline_enable&lt;&#x2F;code&gt; option set to &lt;code&gt;true&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://mdpan.dev/posts/math-symbol/">&lt;p&gt;Note: This requires the &lt;code&gt;mathjax&lt;&#x2F;code&gt; and &lt;code&gt;mathjax_dollar_inline_enable&lt;&#x2F;code&gt; option set to &lt;code&gt;true&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;h1 id=&quot;inline-math&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#inline-math&quot; aria-label=&quot;Anchor link for: inline-math&quot;&gt;Inline Math&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
 &lt;ul&gt;
 &lt;li&gt;$(a+b)^2$ = $a^2 + 2ab + b^2$&lt;&#x2F;li&gt;
@@ -472,21 +472,21 @@ $$&lt;&#x2F;p&gt;
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://mdpan.dev/blog/posts/markdown/"/>
-        <id>https://mdpan.dev/blog/posts/markdown/</id>
+        <link rel="alternate" type="text/html" href="https://mdpan.dev/posts/markdown/"/>
+        <id>https://mdpan.dev/posts/markdown/</id>
         
-        <content type="html" xml:base="https://mdpan.dev/blog/posts/markdown/">&lt;h1 id=&quot;h1&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#h1&quot; aria-label=&quot;Anchor link for: h1&quot;&gt;H1&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+        <content type="html" xml:base="https://mdpan.dev/posts/markdown/">&lt;h1 id=&quot;h1&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#h1&quot; aria-label=&quot;Anchor link for: h1&quot;&gt;H1&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
 &lt;h2 id=&quot;h2&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#h2&quot; aria-label=&quot;Anchor link for: h2&quot;&gt;H2&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
 &lt;h3 id=&quot;h3&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#h3&quot; aria-label=&quot;Anchor link for: h3&quot;&gt;H3&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
 &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet sagittis id consectetur purus ut. In pellentesque massa placerat duis ultricies. Neque laoreet suspendisse interdum consectetur libero id. Justo nec ultrices dui sapien eget mi proin. Nunc consequat interdum varius sit amet mattis vulputate. Sollicitudin tempor id eu nisl nunc mi ipsum. Non odio euismod lacinia at quis. Sit amet nisl suscipit adipiscing. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. Sit amet consectetur adipiscing elit pellentesque habitant. Ac placerat vestibulum lectus mauris. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit sed. &lt;a href=&quot;https:&#x2F;&#x2F;www.google.com&quot;&gt;Google&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;markdown-here.com&#x2F;img&#x2F;icon256.png&quot; alt=&quot;Markdown Logo&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;code-block&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#code-block&quot; aria-label=&quot;Anchor link for: code-block&quot;&gt;Code Block&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
-&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
-&lt;&#x2F;span&gt;&lt;span&gt;    println!(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Hello World&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;);
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07171;&quot;&gt;println!&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;Hello World&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
 &lt;&#x2F;span&gt;&lt;span&gt;}
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;pre data-linenos data-lang=&quot;rust&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;1&lt;&#x2F;td&gt;&lt;td&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
-&lt;&#x2F;span&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;&lt;tr&gt;&lt;td&gt;&lt;mark style=&quot;background-color:#65737e30;&quot;&gt;2&lt;&#x2F;mark&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;mark style=&quot;background-color:#65737e30;&quot;&gt;&lt;span&gt;    println!(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Hello World&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;);
+&lt;pre data-linenos data-lang=&quot;rust&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;1&lt;&#x2F;td&gt;&lt;td&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;&lt;tr&gt;&lt;td&gt;&lt;mark style=&quot;background-color:#f3f3f3;&quot;&gt;2&lt;&#x2F;mark&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;mark style=&quot;background-color:#f3f3f3;&quot;&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07171;&quot;&gt;println!&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;Hello World&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
 &lt;&#x2F;span&gt;&lt;&#x2F;mark&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;&lt;tr&gt;&lt;td&gt;3&lt;&#x2F;td&gt;&lt;td&gt;&lt;span&gt;}
 &lt;&#x2F;span&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h2 id=&quot;ordered-list&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#ordered-list&quot; aria-label=&quot;Anchor link for: ordered-list&quot;&gt;Ordered List&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
