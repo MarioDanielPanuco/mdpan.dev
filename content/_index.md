@@ -14,6 +14,3 @@ Outside of academia, my interests are in competitive esports and digital/analog 
 
 
 
-
-
-Checkout all the [options you can configure](./posts/configuration) and the [example pages](./tags/example/).
