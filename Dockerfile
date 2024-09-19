@@ -1,4 +1,4 @@
-FROM ghcr.io/getzola/zola:v0.19.1 as zola
+FROM ghcr.io/getzola/zola:v0.19.2 as zola
 
 COPY . /myBlog
 WORKDIR /myBlog

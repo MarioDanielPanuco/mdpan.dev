@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://mdpan.dev/sitemap.xml
+Sitemap: /sitemap.xml
