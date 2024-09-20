@@ -12,5 +12,4 @@ Hello there! I'm Mario Daniel Panuco. I recently finished a Masters student in S
 Outside of academia, my interests are in competitive esports and digital/analog sound design (it's all sines and cosines!!).
 
 
-
-
+You can read about some of my teaching experience at [/teaching](@/teaching.md)
