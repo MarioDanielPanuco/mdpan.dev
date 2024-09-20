@@ -73,6 +73,9 @@ menu = [
 
 socials = [
     # { name = "twitter", url = "https://twitter.com/roctodp", icon = "twitter" },
+    # { name = "linkedin", url = "https://twitter.com/roctodp", icon = "linkedin" },
+    # { name = "telegram", url = "https://twitter.com/roctodp", icon = "telegram" },
+    # { name = "linkedin", url = "https://linkedin.com/mariodanielpanuco", icon = "linkedin" },
     { name = "github", url = "https://github.com/mariodanielpancuo", icon = "github" },
 ]
 
