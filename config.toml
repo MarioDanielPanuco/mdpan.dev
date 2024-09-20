@@ -72,7 +72,7 @@ menu = [
 ]
 
 socials = [
-    { name = "twitter", url = "https://twitter.com/roctodp", icon = "twitter" },
+    # { name = "twitter", url = "https://twitter.com/roctodp", icon = "twitter" },
     { name = "github", url = "https://github.com/mariodanielpancuo", icon = "github" },
 ]
 
