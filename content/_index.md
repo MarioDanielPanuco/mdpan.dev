@@ -8,7 +8,7 @@ template = "homepage.html"
 > -<cite> Edward Lorenz </cite>
 
 ## About Me 
-Hello there! I'm Mario Daniel Panuco. I recently finished a Masters student in Scientific Computing and Applied Mathematics at UCSC. I'm particularly intested in Scientific Machine Learning and Computational Genomics.
+Hello there! I'm Mario Daniel Panuco. I recently finished a Masters student in Scientific Computing and Applied Mathematics at UCSC. During my Computer Science undergraduate, I found interest in algorithmns and machine learning. I'm currently focusing on in Scientific Machine Learning and Computational Genomics.
 
 
 You can read about some of my teaching experience at [/teaching](@/teaching.md) 
