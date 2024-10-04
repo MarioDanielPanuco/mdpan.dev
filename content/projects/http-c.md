@@ -6,6 +6,6 @@ weight = 1
 
 [extra]
 # You can also crop the image in the url by adjusting w=/h=
-remote_image = "mdpan.dev/static/images/http-project-image.png"
+remote_image = "https://mdpan.dev/images/http-project-image.png"
 +++
 
