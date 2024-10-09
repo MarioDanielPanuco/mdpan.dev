@@ -14,7 +14,6 @@ remote_image = "https://mdpan.dev/images/http-project-image.png"
 <!-- link_to = "https://github.com/mariodanielpanuco/http-c" -->
 
 ## Usage
-
 ```
 ./httpserver [-t threads_count] [-l log_path] <port> 
 ```
@@ -97,3 +96,4 @@ Used to manage the HTTP request header fields
 - audit_log(): Writes a string to the log file
 - Other misc. functions
 
+You can email me for more information on this project.
