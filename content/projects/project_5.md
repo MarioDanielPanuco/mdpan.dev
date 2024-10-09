@@ -4,8 +4,6 @@ description = "Experience that never materialized into a sufficient project, but
 weight = 1
 +++
 
-
-
 # Rust
 
 # Python
