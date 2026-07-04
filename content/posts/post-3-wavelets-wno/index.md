@@ -7,7 +7,7 @@ tags = ["math", "fourier", "wavelets", "jax", "machine-learning", "scientific-co
 +++
 
 *This is part 3 of a 3-part series
-([part 1](@/posts/post-1-origins/index.md): Euler's formula and Fourier series;
+([part 1](@/posts/post-1-origins/index.md): Euler's formula and Fourier series\;
 [part 2](@/posts/post-2-dft-fft/index.md): the DFT, FFT, and spectral methods).
 Figures and the trained model are reproducible from
 [the repo](https://github.com/MarioDanielPanuco/Fourier-Transform):
@@ -18,8 +18,8 @@ Figures and the trained model are reproducible from
 A Fourier coefficient is an integral over *all* time. The basis function
 $e^{i\omega t}$ has perfect frequency and no location — it rings forever. So a
 spectrum answers "what frequencies are present?" but is structurally incapable of
-answering "*when*?" A drum hit at $t = 3\,\mathrm{s}$ and the same hit at
-$t = 30\,\mathrm{s}$ have the same magnitude spectrum; all the timing hides in the
+answering "*when*?" A drum hit at $t = 3\\,\mathrm{s}$ and the same hit at
+$t = 30\\,\mathrm{s}$ have the same magnitude spectrum\; all the timing hides in the
 phase, scrambled across every coefficient.
 
 Part 2's fix was the spectrogram: window the signal, transform each slice. But the
@@ -28,7 +28,7 @@ and a 2-millisecond click, and no single window serves both clients:
 
 ![The same signal analyzed with a short window and a long window: each smears what the other resolves](01-stft-tradeoff.png)
 
-This isn't an engineering failure; it's a theorem. Gabor's uncertainty principle —
+This isn't an engineering failure\; it's a theorem. Gabor's uncertainty principle —
 the same inequality as Heisenberg's, applied to a signal and its transform — bounds
 the product of time spread and frequency spread:
 
@@ -41,13 +41,13 @@ frequencies — and that observation is the whole wavelet idea.
 
 ## Wavelets: constant-Q tiling
 
-High-frequency events are typically brief (clicks, edges, shocks); low-frequency
+High-frequency events are typically brief (clicks, edges, shocks)\; low-frequency
 behavior is typically long (drones, trends). So instead of one fixed window, take one
 oscillating bump $\psi$ — the **mother wavelet** — and generate a family by scaling
 and translating it:
 
 $$
-\psi_{a,b}(t) = \frac{1}{\sqrt{a}}\, \psi\!\left(\frac{t - b}{a}\right).
+\psi_{a,b}(t) = \frac{1}{\sqrt{a}}\\, \psi\\!\left(\frac{t - b}{a}\right).
 $$
 
 ![A Morlet mother wavelet, a compressed copy, and a stretched shifted copy](02-wavelet-family.png)
@@ -56,11 +56,11 @@ The **continuous wavelet transform** correlates the signal against every member 
 the family:
 
 $$
-W(a, b) = \int_{-\infty}^{\infty} f(t)\, \frac{1}{\sqrt{a}}\,
-\overline{\psi\!\left(\frac{t-b}{a}\right)} dt .
+W(a, b) = \int_{-\infty}^{\infty} f(t)\\, \frac{1}{\sqrt{a}}\\,
+\overline{\psi\\!\left(\frac{t-b}{a}\right)} dt .
 $$
 
-Small scale $a$ = a short, high-frequency probe with fine time resolution; large $a$
+Small scale $a$ = a short, high-frequency probe with fine time resolution\; large $a$
 = a long, low-frequency probe with fine frequency resolution. Every tile in the
 time-frequency plane has the same *relative* bandwidth (musicians: each octave gets
 equal treatment — "constant-Q"). Mechanically it's just template matching, a
@@ -75,7 +75,7 @@ to milliseconds at high frequency where short probes live:
 ![Scalogram of the chirp plus click signal, resolving both simultaneously](03-scalogram.png)
 
 (The only real constraint on $\psi$ is the admissibility condition — zero mean and
-finite $\int |\hat\psi(\omega)|^2 / |\omega|\, d\omega$ — i.e., it must actually
+finite $\int |\hat\psi(\omega)|^2 / |\omega|\\, d\omega$ — i.e., it must actually
 *wave*.)
 
 ## The DWT: Mallat's pyramid
@@ -92,8 +92,8 @@ highpass filter $g$, downsample each by 2 (safe *because* the filters halved the
 band — part 2's aliasing lesson), then recurse on the lowpass half:
 
 $$
-x \longrightarrow (\,\mathrm{cA}_1, \mathrm{cD}_1\,)
-\longrightarrow (\,\mathrm{cA}_2, \mathrm{cD}_2, \mathrm{cD}_1\,)
+x \longrightarrow (\\,\mathrm{cA}_1, \mathrm{cD}_1\\,)
+\longrightarrow (\\,\mathrm{cA}_2, \mathrm{cD}_2, \mathrm{cD}_1\\,)
 \longrightarrow \cdots
 $$
 
@@ -116,7 +116,7 @@ concisely:
 
 *(The formal scaffolding behind this — multiresolution analysis — is a nested ladder
 of approximation spaces $V_0 \subset V_1 \subset \cdots$ with $V_{j+1} = V_j \oplus
-W_j$; the wavelets span the detail spaces $W_j$. Mallat's book has the full story.)*
+W_j$\; the wavelets span the detail spaces $W_j$. Mallat's book has the full story.)*
 
 ## Neural operators in one section
 
@@ -140,7 +140,7 @@ $$
 where $\mathcal{F}$ is the FFT along the spatial axis, $R_\theta$ holds learnable
 complex weights on the lowest $k$ modes (the rest truncated to zero), and $W v + b$
 is a pointwise skip connection that carries what the truncation drops. Compare: heat
-flow multiplied mode $k$ by $e^{-\nu k^2 t}$; the FNO multiplies mode $k$ by whatever
+flow multiplied mode $k$ by $e^{-\nu k^2 t}$\; the FNO multiplies mode $k$ by whatever
 the data says. It's a learnable spectral method.
 
 But an FFT-based layer inherits Fourier's blind spot. Global modes are a clumsy
@@ -178,7 +178,7 @@ Learn the operator $u(\cdot, 0) \mapsto u(\cdot, 0.5)$ on a 256-point grid.
 (Fourier coefficients with $1/k^2$ amplitudes), each integrated pseudo-spectrally —
 derivatives via `rfft`/`irfft`, 2/3-rule dealiasing, integrating-factor RK4 so the
 stiff diffusion term is handled exactly. `jax.vmap` over samples, `jax.lax.scan` over
-time; the whole dataset generates in seconds on a CPU. The advection term steepens
+time\; the whole dataset generates in seconds on a CPU. The advection term steepens
 every smooth start into fronts:
 
 ![Sample Burgers initial conditions and their sharpened evolutions](08-burgers-samples.png)
@@ -204,7 +204,7 @@ def _wno_block(p, v):                      # v: (batch, n, width)
 
 That `einsum` is the exact analogue of the FNO's $R_\theta$: an independent learnable
 channel-mixing matrix *per wavelet coefficient*, applied only on the coarse subbands.
-Parameters live in a plain pytree dict; no framework. Training is `optax.adam` on the
+Parameters live in a plain pytree dict\; no framework. Training is `optax.adam` on the
 relative L2 loss $\lVert \hat{u} - u \rVert_2 / \lVert u \rVert_2$ — a few minutes on
 a laptop CPU.
 
@@ -232,7 +232,7 @@ hundred lines you can read in one sitting.
   they apply, and they come with 200 years of theory.
 - **STFT / spectrogram** — you need "when *and* what frequency" and a fixed
   resolution contract is acceptable (audio, vibration monitoring).
-- **DWT / wavelets** — transients, edges, jumps, multiscale structure; when you want
+- **DWT / wavelets** — transients, edges, jumps, multiscale structure\; when you want
   sparsity (compression, denoising) or $O(N)$ speed.
 - **FNO** — learning solution operators for smooth, periodic PDE families fast.
 - **WNO** — same game with shocks, sharp gradients, non-periodic boundaries, or
@@ -240,8 +240,8 @@ hundred lines you can read in one sitting.
 
 The through-line of all three posts is one move, inherited from a rejected 1807
 memoir: *find the basis that makes your operator simple, act there, and come back.*
-Euler's formula supplied the basis; the FFT made the round trip cheap; wavelets
-rebuilt the basis for a world with edges; and neural operators let the data choose
+Euler's formula supplied the basis\; the FFT made the round trip cheap\; wavelets
+rebuilt the basis for a world with edges\; and neural operators let the data choose
 what to do in the middle.
 
 ### Further reading

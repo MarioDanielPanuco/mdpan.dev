@@ -52,15 +52,15 @@ $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Collecting the real and imaginary terms:
 
 $$
 e^{i\theta}
-= \underbrace{\left(1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \cdots\right)}_{\cos\theta}
-+ i\,\underbrace{\left(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \cdots\right)}_{\sin\theta}.
+= \underbrace{\left(1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \cdots\right)}\_{\cos\theta}
+\\,+\\, i\underbrace{\left(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \cdots\right)}\_{\sin\theta}.
 $$
 
 The two series that fall out are exactly the Taylor series of cosine and sine.
 
 If series manipulation feels like a card trick, here is the differential-equation
 argument. Let $f(\theta) = e^{-i\theta}(\cos\theta + i\sin\theta)$. Differentiating
-with the product rule gives $f'(\theta) = 0$ everywhere, so $f$ is constant; since
+with the product rule gives $f'(\theta) = 0$ everywhere, so $f$ is constant\; since
 $f(0) = 1$, the two sides agree for all $\theta$. Both $e^{i\theta}$ and
 $\cos\theta + i\sin\theta$ are the unique solution of $y' = iy$ with $y(0)=1$ — they
 are the same function described twice.
@@ -73,7 +73,7 @@ cosine and sine are its two shadows — the projections onto the real and imagin
 Set $\theta = \pi$ and the point lands at $-1$, giving the poster identity
 $e^{i\pi} + 1 = 0$. But the working form, the one we'll use constantly, is
 $\theta = \omega t$: a point moving around the circle at constant angular speed
-$\omega$. Watch its vertical shadow and you get a sine wave; the horizontal shadow is
+$\omega$. Watch its vertical shadow and you get a sine wave\; the horizontal shadow is
 a cosine:
 
 ![A rotating phasor whose vertical projection traces out a sine wave](02-phasor-projections.gif)
@@ -102,7 +102,7 @@ $$
 which says a real oscillation is two counter-rotating phasors whose imaginary parts
 cancel. When you later see the spectrum of a real signal come out symmetric — every
 spike at $+\omega$ mirrored at $-\omega$ — this is why. Nothing is "vibrating
-backwards in time"; the two half-amplitude rotations simply conspire to keep the sum
+backwards in time"\; the two half-amplitude rotations simply conspire to keep the sum
 real.
 
 ## Fourier series: projection onto rotations
@@ -111,17 +111,17 @@ Fourier's claim, in modern dress: a reasonable periodic function $f$ with period
 $2\pi$ can be written as
 
 $$
-f(t) = \sum_{n=-\infty}^{\infty} c_n\, e^{i n t},
+f(t) = \sum_{n=-\infty}^{\infty} c_n\\, e^{i n t},
 \qquad
-c_n = \frac{1}{2\pi} \int_0^{2\pi} f(t)\, e^{-i n t}\, dt .
+c_n = \frac{1}{2\pi} \int_0^{2\pi} f(t)\\, e^{-i n t}\\, dt .
 $$
 
 The formula for $c_n$ is not pulled from a hat. The complex exponentials are
 **orthogonal** on the interval:
 
 $$
-\frac{1}{2\pi}\int_0^{2\pi} e^{i n t}\, \overline{e^{i m t}}\, dt =
-\begin{cases} 1 & n = m \\ 0 & n \neq m \end{cases}
+\frac{1}{2\pi}\int_0^{2\pi} e^{i n t}\\, \overline{e^{i m t}}\\, dt =
+\begin{cases} 1 & n = m \\\\ 0 & n \neq m \end{cases}
 $$
 
 so they behave exactly like perpendicular unit vectors, and $c_n$ is an ordinary dot
@@ -151,8 +151,8 @@ the discontinuity:
 
 ![Gibbs phenomenon: the overshoot near the jump stays at about 9% no matter how many harmonics are used](06-gibbs-zoom.png)
 
-The overshoot lands at $\frac{2}{\pi}\int_0^\pi \frac{\sin s}{s}\,ds \approx 1.179$
-for a jump from $-1$ to $1$. This isn't a numerical artifact; it will come back in
+The overshoot lands at $\frac{2}{\pi}\int_0^\pi \frac{\sin s}{s}\\,ds \approx 1.179$
+for a jump from $-1$ to $1$. This isn't a numerical artifact\; it will come back in
 part 3 as a genuine argument for wavelets, which handle jumps far more gracefully.
 
 ## Epicycles: the series you can watch
@@ -164,7 +164,7 @@ function. For the square wave, six circles already do a passable job:
 ![Six chained rotating circles tracing out a square wave](07-epicycles-square.gif)
 
 This is Ptolemy's machinery pointed at a waveform instead of a planet — and it's
-honest mathematics, not just a pretty picture. The largest circle is the fundamental;
+honest mathematics, not just a pretty picture. The largest circle is the fundamental\;
 each smaller, faster circle is a correction term. (The same construction with complex
 coefficients traces closed curves in the plane, which is how those "draw anything with
 epicycles" animations work: sample the outline, compute the coefficients — by the end
@@ -176,7 +176,7 @@ One question remains from 1807: why would sines and cosines be the natural curre
 for *heat*, of all things? The heat equation on a ring is
 
 $$
-\frac{\partial u}{\partial t} = \nu\, \frac{\partial^2 u}{\partial x^2},
+\frac{\partial u}{\partial t} = \nu\\, \frac{\partial^2 u}{\partial x^2},
 $$
 
 and the answer is that complex exponentials are **eigenfunctions** of the operator
@@ -186,12 +186,12 @@ $u(x, 0) = \sum_k c_k e^{ikx}$, the equation stops coupling anything to anything
 each mode evolves alone, by an ordinary one-line ODE, and
 
 $$
-u(x, t) = \sum_k c_k\, e^{-\nu k^2 t}\, e^{i k x}.
+u(x, t) = \sum_k c_k\\, e^{-\nu k^2 t}\\, e^{i k x}.
 $$
 
 The factor $e^{-\nu k^2 t}$ is the whole story of diffusion: every mode decays
 exponentially, and the rate grows with the *square* of the frequency. Wiggles die
-fast; broad features linger. Watch a jagged temperature profile smooth itself out
+fast\; broad features linger. Watch a jagged temperature profile smooth itself out
 while its spectrum collapses from the high end:
 
 ![A jagged temperature profile smoothing out as its high-frequency modes decay](08-heat-decay.gif)
@@ -200,7 +200,7 @@ This is why Fourier invented the series: the right basis turns a partial differe
 equation into a family of independent, trivially solvable ordinary ones. *Diagonalize
 the operator, and the physics falls apart into non-interacting pieces.* That single
 move — change to the basis where your operator is diagonal — is the through-line of
-this series. In part 2 it becomes the FFT and spectral methods; in part 3, the
+this series. In part 2 it becomes the FFT and spectral methods\; in part 3, the
 "diagonalize, act, transform back" pattern returns with learned weights in the middle,
 as a neural operator.
 
