@@ -383,26 +383,31 @@ return idwt2_packed(x * s)
 ```
 
 The per-coefficient normalization (`s` above, equivalently per-subband for the
-packed layout) deserves its own paragraph, because at first sight it appears to
-fight the compression story — if the wavelet transform is valuable for
-concentrating the signal in few coefficients, why flatten the scales back out? The
-resolution: the concentration is real, and it is exactly _why_ normalization is
-needed. An orthonormal Haar step maps a locally smooth pair to
-$a = (u_{2i} + u_{2i+1})/\sqrt{2} \approx \sqrt{2}\\, u$ — the approximation
-coefficient _grows_ by $\sqrt{2}$ per averaging, per axis. After two levels in two
-dimensions the coarse block carries coefficients roughly $4\times$ the raw field's
-scale, while the fine-detail coefficients of a smooth region sit near zero. For
-_compression_ (part 3, or an SVD truncation) that disparity is the entire point:
-keep the few large coefficients, discard the rest. For _generation_ it is a
-hazard: the DDPM corrupts every coefficient with noise of the same unit scale, so
-without rescaling, a given noise level $k$ barely perturbs the coarse block while
-having long since drowned the fine subbands — the denoiser would learn the coarse
-structure and write off the details (precisely the shock information the wavelet
-basis was chosen to preserve) as noise. Dividing by the per-coefficient standard
-deviation equalizes the signal-to-noise schedule across subbands\; the scale map is
-reapplied before the inverse transform. Compression discards small coefficients\;
-generation must _model_ them — the two uses pull in opposite directions, and the
-normalization is what reconciles the shared representation with the second use.
+packed layout) is a consequence of how an orthonormal wavelet transform
+distributes energy. The transform is norm-preserving, but it concentrates: a Haar
+averaging step maps a locally smooth pair to $a = (u_{2i} + u_{2i+1})/\sqrt{2}
+\approx \sqrt{2}\\,u$, a gain of $\sqrt{2}$ per level per axis on the smooth
+content of the signal, while each detail coefficient measures a local difference
+and is near zero wherever the field is smooth. In this dataset the level-2
+approximation block has standard deviation $\approx 1.7$ against $\approx 0.03$
+for the finest detail subbands — a $60\times$ disparity in scale. This
+concentration is exactly the sparsity that part 3's compression argument exploits,
+and it is preserved here: the normalization does not alter the representation,
+only the units in which the denoiser sees each coordinate.
+
+The reason those units matter is the noise model. The DDPM forward process adds
+noise of a single global scale to every coordinate, so a coefficient's
+signal-to-noise ratio at diffusion step $k$ is proportional to its own standard
+deviation. With a $60\times$ scale disparity there is no noise level at which both
+blocks are usefully corrupted: while the approximation block is still barely
+perturbed, the detail subbands — which carry the front's position — are already
+indistinguishable from noise, and the training signal for denoising them is
+negligible over most of the schedule. Dividing each coefficient by its standard
+deviation over the training set gives every coordinate the same schedule\; the
+stored map `s` is multiplied back before the inverse transform. The distinction
+from compression is the task: compression may discard the small coefficients,
+whereas a generative model must reproduce their distribution, and it can only
+learn to do so if they are visible to it during training.
 
 ![Training curve of the WDNO](03-wdno-loss.png)
 
@@ -419,64 +424,140 @@ _whole trajectory_ (32 frames, easy early ones and hard late ones) versus the WN
 single endpoint\; and one diffusion sample is a draw from a distribution, not a
 posterior mean — averaging several samples per input lowers the number.
 
-## Benchmarks: what the GPU actually buys
+## Benchmarks
 
-All numbers in this section are measured on 1D viscous Burgers — the same system
-as everything above — on one machine (Ryzen 9800X3D, RTX 5080, JAX on WSL2), via
-`pixi run [-e cuda] wno-bench` and `wdno-bench`. The WNO benchmark trains the
-endpoint operator on the 256-point grid at batch 32\; the WDNO benchmark trains
-the U-Net denoiser on $32 \times 64$ packed coefficient images at batch 16.
-Throughput is measured without per-step host synchronization (see below).
+Both operators were benchmarked on the 1D viscous Burgers system above, on one
+machine (Ryzen 9800X3D CPU\; RTX 5080 GPU\; JAX on WSL2), via
+`pixi run [-e cuda] wno-bench` and `wdno-bench`. All throughputs are measured
+after JIT compilation, with results fetched from the device only at the end of
+the timed region — they reflect computation, not host–device transfer. One
+_training step_ is a full Adam update (forward, backward, parameter update) on
+one minibatch\; one _operator evaluation_ is a single forward pass mapping an
+initial condition to an endpoint\; one _sampled trajectory_ is 300 sequential
+denoiser evaluations.
 
-| benchmark (1D Burgers)         | CPU   | RTX 5080 | speedup |
-| ------------------------------ | ----- | -------- | ------- |
-| WNO training, steps/s          | 35.8  | 199.2    | 5.6×    |
-| WNO inference, inputs/s        | 2,954 | 116,735  | ~40×    |
-| WDNO (U-Net) training, steps/s | 9.5   | 183.9    | 19×     |
-| WDNO sampling, trajectories/s  | 2.0   | 3.8      | 1.9×    |
+| quantity                                                             | unit           | CPU   | RTX 5080 | GPU/CPU |
+| -------------------------------------------------------------------- | -------------- | ----- | -------- | ------- |
+| WNO training (batch 32, $n = 256$)                                    | steps/s        | 35.8  | 199.2    | 5.6×    |
+| WNO inference (batch 128)                                             | evaluations/s  | 2,954 | 116,735  | 40×     |
+| WDNO U-Net training (batch 16, $32 \times 64$ coefficient images)     | steps/s        | 9.5   | 183.9    | 19×     |
+| WDNO sampling (batch 16, 300 denoiser calls each)                     | trajectories/s | 2.0   | 3.8      | 1.9×    |
 
-Three observations, each of which cost us a wrong belief.
+End-to-end wall time deviates from these rates in one systematic way. The
+training script logs the loss every step, which transfers a scalar to host and
+stalls the GPU pipeline: the WNO's 12,000 steps take 104 s on the GPU (about 60 s
+of computation at the benchmarked rate plus about 44 s of synchronization
+stalls) versus 339 s on the CPU, which is compute-bound and unaffected by the
+transfers. This is also why every published run now records
+`jax.default_backend()` in `metrics.json`: device attribution belongs in the
+artifact, not in a figure caption.
 
-First, **instrument before you conclude**. An earlier draft of part 3 claimed the
-WNO trained in a "dead heat" between CPU and GPU. That claim rested on two
-artifacts. The training script's loss history is appended as a Python float every
-step — a device-to-host synchronization that stalls the GPU pipeline each
-iteration (of the GPU's 104 s end-to-end training time, roughly 44 s is this
-stall\; the same run at benchmark throughput would take ~60 s). And the training
-figure's "on CPU" label turned out to be hardcoded — the original run it described
-was almost certainly a GPU run. Both are fixed: metrics now record
-`jax.default_backend()`, and the honest end-to-end comparison is **104 s (GPU)
-versus 339 s (CPU)** for the full 12,000 steps.
+The spread of speedups — 1.9× to 40× on the same hardware — is explained by
+arithmetic intensity and kernel count rather than model size. A WNO layer
+executes dozens of small kernels per step (sequential DWT filter convolutions,
+per-subband einsums), each doing little arithmetic per launch, so training is
+launch-latency-bound — a regime WSL2's added launch overhead makes worse\;
+batched inference amortizes those launches over 128 inputs at once and reaches
+40×. The WDNO's U-Net spends its time in wide convolutions with substantial
+arithmetic per kernel, hence 19× in training\; its sampling gains only 1.9×
+because 300 denoiser calls are inherently sequential and a batch of 16 small
+images does not saturate the device — larger sampling batches recover most of
+the difference.
 
-Second, **arithmetic intensity, not parameter count, sets the speedup**. The
-WNO's layer is a chain of small sequential DWT convolutions and per-subband
-einsums — dozens of kernel launches that each do little arithmetic, sensitive to
-launch latency (which WSL2 does not help). It still earns 5.6× in training and
-~40× in batched inference, where the whole test set is one launch-amortized
-forward pass. The WDNO's U-Net is wide convolutions — real work per launch — and
-reaches 19× in training. Its _sampling_, by contrast, gains only 1.9×: 300
-strictly sequential denoiser calls at batch 16 leave the GPU underfed\; batching
-more trajectories per sampling pass would recover most of the gap.
+These numbers are specific to a small 1D system. Two-dimensional fields (the
+paper's smoke-control setting) increase the work per kernel and widen every GPU
+margin\; deeper wavelet decompositions or longer filters do the opposite,
+adding small sequential kernels. Dataset generation with the spectral solver is
+sequential across time steps in the same way sampling is, and parallelizes on
+the GPU only across initial conditions (`vmap`). Where each equation in the
+roadmap below lands on this spectrum is measured as it is added, alongside
+accuracy.
 
-Third, **the equation shapes the balance sheet**. These numbers are for a small 1D
-system. Moving to 2D fields (the paper's smoke-control setting) multiplies the
-work per kernel and widens every GPU margin\; adding wavelet decomposition levels
-or longer filters does the opposite, multiplying small sequential kernels.
-Trajectory _generation_ itself — `lax.scan` over thousands of RK4 steps — is
-sequential in the same way diffusion sampling is, and benefits from the GPU mainly
-through `vmap` over many initial conditions at once. Where each equation in the roadmap below lands on this
-spectrum is one of the things to measure as it is added, alongside accuracy.
+## A second equation: Kuramoto–Sivashinsky
+
+The equation-agnostic solver makes a second experiment inexpensive, so here is the
+template — scenario, model, analysis, computation, results — run once more, on a
+system chosen to stress the opposite regime from Burgers: not a single front
+sharpening under dissipation, but sustained spatiotemporal chaos.
+
+**Scenario and model.** The
+[Kuramoto–Sivashinsky equation](https://en.wikipedia.org/wiki/Kuramoto%E2%80%93Sivashinsky_equation)
+arises as the normal form of several instability-driven systems — flame-front
+wrinkling, thin liquid films, drift waves in plasmas:
+
+$$
+\frac{\partial u}{\partial t}
+\\;+\\; u\\,\frac{\partial u}{\partial x}
+\\;+\\; \frac{\partial^2 u}{\partial x^2}
+\\;+\\; \frac{\partial^4 u}{\partial x^4}
+= 0 .
+$$
+
+**Analysis.** Splitting as before, the nonlinearity is the same Burgers term
+$\mathcal{N}(u) = -\tfrac{1}{2}\partial_x(u^2)$, and the linear operator
+$\mathcal{L} = -\partial_x^2 - \partial_x^4$ has symbol
+
+$$
+\ell(k) = -(ik)^2 - (ik)^4 = k^2 - k^4 .
+$$
+
+The sign structure is the whole story of this equation. For $0 < k < 1$ the symbol
+is _positive_: long modes grow — the $-\partial_x^2$ term is an _anti_-diffusion,
+injecting energy (the instability). For $k > 1$ the $k^4$ hyperdiffusion dominates
+and short modes are damped hard. Neither behavior alone is interesting\; the
+nonlinearity couples them, transferring energy from the unstable band into the
+damped band, and the balance is deterministic chaos. On a domain of length $L$ the
+unstable modes are $k_j = 2\pi j / L < 1$, so $L = 32\pi$ admits roughly sixteen of
+them — comfortably chaotic. The $k^4$ stiffness is also the reason the integrating
+factor earns its keep here: an explicit stepper would need $\Delta t \sim \Delta
+x^4$.
+
+**Computation.** `pixi run -e cuda wdno-data-ks wdno-train-ks`. Random smooth
+initial conditions are integrated for a burn-in of 40 time units first, so every
+recorded trajectory starts on the chaotic attractor rather than in the smooth
+transient\; the dataset is then $2{,}064$ trajectories of 32 frames over $t \in
+[0, 16]$ at 64 saved grid points ($\Delta t = 0.05$, solver at $n = 256$). The
+model, packing, normalization, and training schedule are identical to the Burgers
+case — same U-Net, same 6,000 steps — and train in 62 s on the RTX 5080.
+
+**Results.** The conditional samples reproduce the attractor's texture — cellular
+structures of the correct width, merging and splitting — but they do not track the
+reference trajectory:
+
+![WDNO samples for Kuramoto–Sivashinsky against the solver: correct texture, no pointwise tracking](06-wdno-ks-samples.png)
+
+The mean whole-trajectory rel-L2 is **115%**, and the per-frame error curve shows
+why this is a property of the problem as much as of the model:
+
+![Per-frame relative error of KS samples growing toward the square-root-of-2 decorrelation limit](07-wdno-ks-error-growth.png)
+
+For two fields with equal energy and no correlation, $\varepsilon =
+\Vert\hat{u} - u\Vert_2 / \Vert u\Vert_2 \to \sqrt{2}$\; the samples reach that
+limit by mid-trajectory. Chaos guarantees some version of this curve for _every_
+method: a positive Lyapunov exponent amplifies any initial discrepancy
+exponentially, and the sample starts with a 34% reconstruction error at frame 0
+(the toy's conditioning is imperfect), so pointwise agreement is lost within a few
+time units. This is the regime where the generative framing stops being a luxury:
+past the predictability horizon the only meaningful questions are distributional.
+On that score the toy is partially successful — the sampled fields carry 92% of
+the true standard deviation, but their late-time spatial spectrum is distorted,
+over-weighting the largest cells (modes 4–7 carry 2–3× the true energy) and
+under-weighting the mid-band (modes 8–13 at 0.3–0.5×). A model of this size
+reproduces the attractor's scale and texture\; matching its spectrum is the
+obvious next increment, and the per-frame curve gives the baseline to beat.
 
 ## Where to take it
 
 The point of making the solver equation-agnostic is that every next experiment is
 now a few lines: pass a different symbol and nonlinearity, regenerate trajectories,
-retrain. A roadmap in rough order of what each problem would prove:
+retrain — Kuramoto–Sivashinsky above was exactly that. A roadmap in rough order of
+what each problem would prove:
 
 - **KdV** — solitons and dispersive shocks\; sharp coherent structures that travel
   and interact, ideal for validating super-resolution on localized features.
-- **Kuramoto–Sivashinsky** — spatiotemporal chaos with cellular structure\; does a
-  generative solver capture chaotic-but-structured statistics?
+- **Kuramoto–Sivashinsky, done properly** — the first pass above leaves a concrete
+  target: match the attractor's late-time spectrum, and evaluate distributionally
+  (spectra, structure functions) rather than by trajectory error.
 - **Compressible Euler (Sod tube)** — genuine discontinuities: contacts,
   rarefactions, shocks\; the regime where the paper's 25× lives.
 - **FitzHugh–Nagumo** — traveling excitation waves with steep fronts\; the guided
@@ -484,12 +565,12 @@ retrain. A roadmap in rough order of what each problem would prove:
 - **Nonlinear Schrödinger** — optical solitons and rogue-wave statistics\; the
   signals crossover.
 
-The first two already ship in `ftx.spectral` (the gallery above is them). Each
-addition will follow the template this post established for Burgers: physical
-scenario → PDE → symbol and nonlinearity → discretization → trained operator →
-benchmark. What's missing versus the paper — and the natural next build — is
-**control**: add a forcing channel to the dataset and the guided update above\;
-1D Burgers control is exactly the paper's first benchmark.
+All the listed 1D equations drop into `ftx.spectral` as a symbol plus a
+nonlinearity, and each addition follows the template this post ran twice —
+physical scenario → PDE → symbol and nonlinearity → discretization → trained
+operator → results. What's missing versus the paper — and the natural next build
+— is **control**: add a forcing channel to the dataset and the guided update
+above\; 1D Burgers control is exactly the paper's first benchmark.
 
 The through-line of the whole series, one last time: _find the basis that makes
 your operator simple, act there, come back._ Euler's formula supplied the basis\;
