@@ -6,7 +6,7 @@ date = 2026-07-03
 tags = ["math", "fourier", "wavelets", "jax", "machine-learning", "scientific-computing"]
 +++
 
-*This is part 3 of a 3-part series
+*This is part 3 of a 4-part series
 ([part 1](@/posts/post-1-origins/index.md): Euler's formula and Fourier series\;
 [part 2](@/posts/post-2-dft-fft/index.md): the DFT, FFT, and spectral methods).
 Figures and the trained model are reproducible from
@@ -28,8 +28,10 @@ and a 2-millisecond click, and no single window serves both clients:
 
 ![The same signal analyzed with a short window and a long window: each smears what the other resolves](01-stft-tradeoff.png)
 
-This isn't an engineering failure\; it's a theorem. Gabor's uncertainty principle —
-the same inequality as Heisenberg's, applied to a signal and its transform — bounds
+This isn't an engineering failure\; it's a theorem.
+[Gabor's uncertainty principle](https://en.wikipedia.org/wiki/Gabor_limit) —
+the [same inequality as Heisenberg's](https://en.wikipedia.org/wiki/Uncertainty_principle),
+applied to a signal and its transform — bounds
 the product of time spread and frequency spread:
 
 $$
@@ -43,8 +45,8 @@ frequencies — and that observation is the whole wavelet idea.
 
 High-frequency events are typically brief (clicks, edges, shocks)\; low-frequency
 behavior is typically long (drones, trends). So instead of one fixed window, take one
-oscillating bump $\psi$ — the **mother wavelet** — and generate a family by scaling
-and translating it:
+oscillating bump $\psi$ — the [**mother wavelet**](https://en.wikipedia.org/wiki/Wavelet)
+— and generate a family by scaling and translating it:
 
 $$
 \psi_{a,b}(t) = \frac{1}{\sqrt{a}}\\, \psi\\!\left(\frac{t - b}{a}\right).
@@ -52,8 +54,8 @@ $$
 
 ![A Morlet mother wavelet, a compressed copy, and a stretched shifted copy](02-wavelet-family.png)
 
-The **continuous wavelet transform** correlates the signal against every member of
-the family:
+The [**continuous wavelet transform**](https://en.wikipedia.org/wiki/Continuous_wavelet_transform)
+correlates the signal against every member of the family:
 
 $$
 W(a, b) = \int_{-\infty}^{\infty} f(t)\\, \frac{1}{\sqrt{a}}\\,
@@ -81,9 +83,12 @@ finite $\int |\hat\psi(\omega)|^2 / |\omega|\\, d\omega$ — i.e., it must actua
 ## The DWT: Mallat's pyramid
 
 The CWT is gloriously redundant — a whole 2D picture from a 1D signal. For
-computation you want the opposite: a basis. Mallat and Daubechies showed you can
+computation you want the opposite: a basis.
+[Mallat](https://doi.org/10.1109/34.192463) and
+[Daubechies](https://doi.org/10.1002/cpa.3160410705) showed you can
 choose scales $a = 2^j$ and shifts $b = k \cdot 2^j$ and, for the right $\psi$, get an
-**orthonormal basis** — no information lost, none duplicated. Daubechies' families
+**orthonormal basis** — no information lost, none duplicated.
+[Daubechies' families](https://en.wikipedia.org/wiki/Daubechies_wavelet)
 (db2, db3, db4...) are compactly supported: each basis function touches only a few
 samples.
 
@@ -97,9 +102,11 @@ x \longrightarrow (\\,\mathrm{cA}_1, \mathrm{cD}_1\\,)
 \longrightarrow \cdots
 $$
 
-Each level splits off the finest remaining detail. For $N$ samples the whole pyramid
-costs $O(N)$ — *faster* than the FFT. Here it is run on a signal with a slow wave, a
-step, and a spike, using the simplest wavelet (Haar: average and difference):
+Each level splits off the finest remaining detail. For $N$ samples the
+[whole pyramid costs $O(N)$](https://en.wikipedia.org/wiki/Fast_wavelet_transform) —
+*faster* than the FFT. Here it is run on a signal with a slow wave, a
+step, and a spike, using the simplest wavelet
+([Haar](https://en.wikipedia.org/wiki/Haar_wavelet): average and difference):
 
 ![Haar wavelet coefficients of a signal with a step and a spike, level by level](05-haar-pyramid.png)
 
@@ -107,15 +114,19 @@ The point to stare at: the spike and the step stay **findable at every level** �
 handful of large coefficients sitting at the right location. A Fourier basis would
 democratically smear them across all frequencies. This is Fourier's Gibbs problem
 from part 1, solved by changing basis. The consequence is *sparsity*, and it's why
-this transform runs your world quietly: JPEG-2000 compresses images with it, denoisers
-threshold small wavelet coefficients (Donoho's soft thresholding), and FBI
-fingerprints live in a wavelet format. A budget of 48 coefficients makes the argument
+this transform runs your world quietly:
+[JPEG 2000](https://en.wikipedia.org/wiki/JPEG_2000) compresses images with it,
+denoisers threshold small wavelet coefficients
+([Donoho's soft thresholding](https://doi.org/10.1109/18.382009)), and FBI
+fingerprints live in
+[a wavelet format](https://en.wikipedia.org/wiki/Wavelet_scalar_quantization). A budget of 48 coefficients makes the argument
 concisely:
 
 ![Reconstruction from 48 Fourier versus 48 wavelet coefficients on a signal with jumps](06-compression-race.png)
 
-*(The formal scaffolding behind this — multiresolution analysis — is a nested ladder
-of approximation spaces $V_0 \subset V_1 \subset \cdots$ with $V_{j+1} = V_j \oplus
+*(The formal scaffolding behind this —
+[multiresolution analysis](https://en.wikipedia.org/wiki/Multiresolution_analysis) —
+is a nested ladder of approximation spaces $V_0 \subset V_1 \subset \cdots$ with $V_{j+1} = V_j \oplus
 W_j$\; the wavelets span the detail spaces $W_j$. Mallat's book has the full story.)*
 
 ## Neural operators in one section
@@ -129,7 +140,8 @@ per new input — a *surrogate solver*. Done right it is **discretization-invari
 the same weights work at any grid resolution, because the layers act on functions,
 not pixel vectors.
 
-The **Fourier Neural Operator** (Li et al., 2020) builds the layer from part 2's
+The **Fourier Neural Operator** ([Li et al., 2020](https://arxiv.org/abs/2010.08895))
+builds the layer from part 2's
 three-step spectral pattern — transform, act diagonally, transform back — with the
 diagonal action *learned*:
 
@@ -146,7 +158,8 @@ the data says. It's a learnable spectral method.
 But an FFT-based layer inherits Fourier's blind spot. Global modes are a clumsy
 language for sharp fronts and shocks — precisely what nonlinear PDEs love to produce.
 You know the remedy from the last two sections: swap the transform. The **Wavelet
-Neural Operator** (Tripura & Chakraborty, 2022) keeps the recipe and replaces
+Neural Operator** ([Tripura & Chakraborty, 2022](https://arxiv.org/abs/2205.02191))
+keeps the recipe and replaces
 $\mathcal{F}$ with the DWT, putting the learnable weights on wavelet subbands:
 
 ![Block diagrams of an FNO layer and a WNO layer, identical except for the transform](07-fno-vs-wno-arch.svg)
@@ -163,8 +176,9 @@ Everything below is in the repo under
 files, pure JAX plus [jaxwt](https://github.com/v0lta/Jax-Wavelet-Toolbox) for a
 differentiable DWT.
 
-**The problem.** Viscous Burgers' equation on the periodic unit interval — the
-classic toy for "smooth in, sharp out":
+**The problem.** Viscous
+[Burgers' equation](https://en.wikipedia.org/wiki/Burgers%27_equation) on the periodic
+unit interval — the classic toy for "smooth in, sharp out":
 
 $$
 \frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x}
@@ -205,8 +219,15 @@ def _wno_block(p, v):                      # v: (batch, n, width)
 That `einsum` is the exact analogue of the FNO's $R_\theta$: an independent learnable
 channel-mixing matrix *per wavelet coefficient*, applied only on the coarse subbands.
 Parameters live in a plain pytree dict\; no framework. Training is `optax.adam` on the
-relative L2 loss $\lVert \hat{u} - u \rVert_2 / \lVert u \rVert_2$ — a few minutes on
-a laptop CPU.
+relative L2 loss $\lVert \hat{u} - u \rVert_2 / \lVert u \rVert_2$ — 104 seconds on an
+RTX 5080, about 5–6 minutes on a CPU. (An earlier version of this paragraph claimed the
+two were comparable\; a deliberate benchmark — `pixi run wno-bench`, analyzed in
+[part 4](@/posts/post-4-wdno/index.md) — shows the GPU is 5.6× faster per training step
+and ~40× on batched inference. The wall-clock gap narrows because this training loop
+fetches the loss to host every step, which stalls the GPU\; and the original figure's
+"CPU" label turned out to be hardcoded over what was almost certainly a GPU run — the
+reason the repo now records the device in `metrics.json`.) The repo ships a pixi `cuda`
+environment (JAX + CUDA 12 on WSL2).
 
 One training trick earns its sentence. Burgers on a periodic domain is
 translation-equivariant — shift the initial condition, the solution shifts with it —
@@ -246,9 +267,12 @@ what to do in the middle.
 
 ### Further reading
 
-- Mallat, *A Wavelet Tour of Signal Processing* — the reference.
-- Daubechies, *Ten Lectures on Wavelets* — where db4 comes from.
+- Mallat, *A Wavelet Tour of Signal Processing* — the reference. His
+  [1989 multiresolution paper](https://doi.org/10.1109/34.192463) is where the pyramid
+  algorithm comes from.
+- Daubechies, *Ten Lectures on Wavelets* — where db4 comes from, building on her
+  [1988 construction of compactly supported orthonormal wavelets](https://doi.org/10.1002/cpa.3160410705).
 - Li et al., ["Fourier Neural Operator for Parametric PDEs"](https://arxiv.org/abs/2010.08895) (2020).
 - Tripura & Chakraborty, ["Wavelet Neural Operator for solving parametric PDEs"](https://arxiv.org/abs/2205.02191) (2022).
 - Kovachki et al., ["Neural Operator: Learning Maps Between Function Spaces"](https://arxiv.org/abs/2108.08481) (2021) — the general theory.
-- Hu et al., ["Wavelet Diffusion Neural Operator"](https://arxiv.org/abs/2412.04833) (2024) — the generative sequel: diffusion models run in wavelet space over whole trajectories, for simulation *and* control.
+- Hu et al., ["Wavelet Diffusion Neural Operator"](https://arxiv.org/abs/2412.04833) (2024) — the generative sequel: diffusion models run in wavelet space over whole trajectories, for simulation *and* control. Now the subject of [part 4](@/posts/post-4-wdno/index.md).
