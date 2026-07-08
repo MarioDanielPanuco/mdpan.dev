@@ -220,14 +220,12 @@ That `einsum` is the exact analogue of the FNO's $R_\theta$: an independent lear
 channel-mixing matrix *per wavelet coefficient*, applied only on the coarse subbands.
 Parameters live in a plain pytree dict\; no framework. Training is `optax.adam` on the
 relative L2 loss $\lVert \hat{u} - u \rVert_2 / \lVert u \rVert_2$ — 104 seconds on an
-RTX 5080, about 5–6 minutes on a CPU. (An earlier version of this paragraph claimed the
-two were comparable\; a deliberate benchmark — `pixi run wno-bench`, analyzed in
-[part 4](@/posts/post-4-wdno/index.md) — shows the GPU is 5.6× faster per training step
-and ~40× on batched inference. The wall-clock gap narrows because this training loop
-fetches the loss to host every step, which stalls the GPU\; and the original figure's
-"CPU" label turned out to be hardcoded over what was almost certainly a GPU run — the
-reason the repo now records the device in `metrics.json`.) The repo ships a pixi `cuda`
-environment (JAX + CUDA 12 on WSL2).
+RTX 5080, about 5–6 minutes on a CPU. (The wall-clock gap understates the hardware
+difference: per training step the GPU is 5.6× faster, and ~40× on batched inference —
+`pixi run wno-bench`, analyzed in [part 4](@/posts/post-4-wdno/index.md). This loop
+fetches the loss to host every step for logging, which stalls the GPU\; the run's
+device is recorded in `metrics.json`.) The repo ships a pixi `cuda` environment
+(JAX + CUDA 12 on WSL2).
 
 One training trick earns its sentence. Burgers on a periodic domain is
 translation-equivariant — shift the initial condition, the solution shifts with it —
