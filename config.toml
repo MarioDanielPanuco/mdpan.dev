@@ -67,7 +67,7 @@ menu = [
     { name = "/posts", url = "/posts", weight = 1 },
     { name = "/projects", url = "/projects", weight = 2 },
     { name = "/about", url = "/", weight = 3 },
-    { name = "CV", url = "MarioDanielPanuco_CV_2026.pdf", weight = 4 },
+    { name = "/CV", url = "MarioDanielPanuco_CV_2026.pdf", weight = 4 },
     { name = "/tags", url = "/tags", weight = 5 },
 ]
 
