@@ -1,6 +1,6 @@
 +++
 title = "Heat, Circles, and Euler's Formula"
-description = "Part 1 of a series on the Fourier transform: where it came from, why e^{iθ} is the whole trick, and how to see a square wave as a sum of spinning circles."
+description = "Part 1 of a series on the Fourier transform: where it came from, square waves as a sum smooth sinusoidal waves, and Epicycles."
 date = 2026-07-02
 [taxonomies]
 tags = ["math", "fourier", "python", "jax"]
