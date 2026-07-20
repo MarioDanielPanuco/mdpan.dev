@@ -222,7 +222,7 @@ Parameters live in a plain pytree dict\; no framework. Training is `optax.adam` 
 relative L2 loss $\lVert \hat{u} - u \rVert_2 / \lVert u \rVert_2$ — 104 seconds on an
 RTX 5080, about 5–6 minutes on a CPU. (The wall-clock gap understates the hardware
 difference: per training step the GPU is 5.6× faster, and ~40× on batched inference —
-`pixi run wno-bench`, analyzed in [part 4](@/posts/post-4-wdno/index.md). This loop
+`pixi run wno-bench`, analyzed in part 4 (forthcoming). This loop
 fetches the loss to host every step for logging, which stalls the GPU\; the run's
 device is recorded in `metrics.json`.) The repo ships a pixi `cuda` environment
 (JAX + CUDA 12 on WSL2).
@@ -273,4 +273,4 @@ what to do in the middle.
 - Li et al., ["Fourier Neural Operator for Parametric PDEs"](https://arxiv.org/abs/2010.08895) (2020).
 - Tripura & Chakraborty, ["Wavelet Neural Operator for solving parametric PDEs"](https://arxiv.org/abs/2205.02191) (2022).
 - Kovachki et al., ["Neural Operator: Learning Maps Between Function Spaces"](https://arxiv.org/abs/2108.08481) (2021) — the general theory.
-- Hu et al., ["Wavelet Diffusion Neural Operator"](https://arxiv.org/abs/2412.04833) (2024) — the generative sequel: diffusion models run in wavelet space over whole trajectories, for simulation _and_ control. Now the subject of [part 4](@/posts/post-4-wdno/index.md).
+- Hu et al., ["Wavelet Diffusion Neural Operator"](https://arxiv.org/abs/2412.04833) (2024) — the generative sequel: diffusion models run in wavelet space over whole trajectories, for simulation _and_ control. Now the subject of part 4 (forthcoming).

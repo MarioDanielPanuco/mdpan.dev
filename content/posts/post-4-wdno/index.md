@@ -1,7 +1,8 @@
 +++
 title = "The Generative Sequel: Wavelet Diffusion Neural Operators"
-description = "Part 4 of a series on the Fourier transform: from a PDE to a computational problem — operators, symbols, stiffness — and a toy wavelet diffusion neural operator that samples whole Burgers trajectories."
+description = "Part 4 of a series on the Fourier transform: from a PDE to a computational problem — operators, symbols, stiffness — and a minimal wavelet diffusion neural operator that samples whole Burgers trajectories."
 date = 2026-07-07
+draft = true
 [taxonomies]
 tags = ["math", "fourier", "wavelets", "jax", "machine-learning", "scientific-computing", "diffusion-models"]
 +++
@@ -11,7 +12,7 @@ _This is part 4 of the series
 [part 2](@/posts/post-2-dft-fft/index.md): the DFT, FFT, and spectral methods\;
 [part 3](@/posts/post-3-wavelets-wno/index.md): wavelets and a minimal WNO).
 Everything is reproducible from
-[the repo](https://github.com/MarioDanielPanuco/Fourier-Transform):
+[the repo](https://github.com/MarioDanielPanuco/FFT-and-Wavelets):
 `pixi run -e cuda wdno-train`, then `pixi run figs-post4`._
 
 ## Where it sits
@@ -39,9 +40,10 @@ on the WNO, and it pays to keep them apart:
    turns the same trained model into a controller.
 
 2. **Physical space → wavelet space.** The diffusion doesn't run on the raw field.
-   The whole trajectory $u(t, x)$ is wavelet-transformed jointly in space and time,
+   The whole trajectory $u(t, x)$ is wavelet-transformed jointly in space $x$ and time $t$,
    and the DDPM diffuses and denoises the complete coefficient vector. Diffusion models
-   are known to smear abrupt changes and struggle with resolution transfer, while
+   are known to smear abrupt changes and struggle with resolution transfer
+   ([Hu et al., 2024](https://arxiv.org/abs/2412.04833), the paper's own motivating premise), while
    wavelet coefficients represent discontinuities _sparsely and locally_ — the hard
    content of the signal is concentrated in a few coefficients instead of spread across
    a global basis.
@@ -51,19 +53,16 @@ on the WNO, and it pays to keep them apart:
 One disambiguation before anything else, because the name invites it: the
 "diffusion" in WDNO is the **generative process** — noise gradually removed by a
 learned denoiser. WDNO is a solver/controller
-architecture, not a method for parabolic PDEs. We validate this claim via the application of WDNOs to non-diffusion, non-parabolic equations: 1D advection (hyperbolic), 1D Burgers (shock-forming), 1D _compressible_
+architecture, not a method for parabolic PDEs. The paper's benchmarks bear this out: WDNO is applied to non-diffusion, non-parabolic equations — 1D advection (hyperbolic), 1D Burgers (shock-forming), 1D _compressible_
 Navier–Stokes, 2D incompressible flow, and the ERA5 weather record. What the method actually wants from a problem is structural:
-trajectories on a regular grid, with sharp, localized, multiscale features, e.g, fronts,
-shocks, filaments, etc, where a wavelet basis is sparse and a global basis isn't.
-On smooth, slowly-varying dynamics it's accuracy is least differentiated from a
+trajectories on a regular grid, with sharp, localized, multiscale features — fronts,
+shocks, filaments — where a wavelet basis is sparse and a global basis isn't.
+On smooth, slowly-varying dynamics its accuracy is least differentiated from a
 plain FNO\; on equations governed by shock-dominated dynamics, WDNOs stand out as the more advantageous method.
 
 ## From equation to computation
 
-It's worth outlining the _analytical_ pipeline that
-turns an equation into something a computer (or a neural operator) can chew on —
-this is the machinery that underlies the generation of every training sample in
-parts 3 and 4.
+It's worth outlining the _analytical_ pipeline that turns an equation into something a computer (or a neural operator) can chew on.
 
 **The physical scenario.** Consider momentum transport in a one-dimensional fluid:
 a velocity field $u(t, x)$ on a periodic domain that _advects itself_ (each parcel
@@ -159,7 +158,8 @@ $$
 inverse FFT, square, FFT, multiply by $ik$. The mask $m(k)$ is the **2/3 rule**:
 the square of an $n$-mode signal contains $2n$ modes, and the unrepresentable half
 folds back onto the grid as aliases (part 2's folding ruler)\; zeroing the top
-third of the spectrum removes the corruption exactly for a quadratic term. This
+third of the spectrum removes the corruption exactly for a quadratic term
+([Orszag, 1971](https://doi.org/10.1175/1520-0469%281971%29028%3C1074:OTEOAI%3E2.0.CO;2)). This
 five-operation recipe is the entire cost of nonlinearity in a spectral method.
 
 The symbol and the nonlinearity together are all the solver ever needs to know
@@ -258,9 +258,13 @@ x^{(k-1)} = x^{(k)}
 \\;+\\; \lambda\\, \nabla J\bigl(\hat{x}_0^{(k)}\bigr)\Bigr) + \xi_k ,
 $$
 
-where $\epsilon_\theta$ is the trained denoiser, $\hat{x}_0^{(k)}$ is the standard
-DDPM estimate of the clean sample at step $k$, $\lambda$ is the guidance weight,
-and $\xi_k$ is the sampler's noise. The sampler _is_ the planner: no separate
+where the first term inside the parentheses is the trained denoiser's noise
+prediction, the gradient is evaluated at the standard DDPM estimate of the clean
+sample at step $k$, $\lambda$ is the guidance weight, and the final additive term
+is the sampler's noise. This is Eq. 4 of
+[Hu et al., 2024](https://arxiv.org/html/2412.04833v3) (Sec. 3.1), in the
+classifier-guidance lineage of
+[Dhariwal & Nichol, 2021](https://arxiv.org/abs/2105.05233). The sampler _is_ the planner: no separate
 policy network, no differentiating through a solver. The same weights simulate and
 control.
 
@@ -282,13 +286,14 @@ super-resolution model as many rungs up as you like — including resolutions ne
 seen in training. The wavelet representation is what makes the rung-to-rung map
 _local_ (each fine coefficient depends on a neighborhood of coarse ones)\; their
 ablation shows the same scheme in raw space-time degrades as super-resolution steps
-stack.
+stack ([Hu et al., 2024](https://arxiv.org/html/2412.04833v3#S4.SS7), Sec. 4.7, Fig. 4(c)).
 
 ## What the paper reports
 
 Five systems, against raw-space DDPM, FNO, MWT, CNN, OFormer and others
 (numbers transcribed from v3 of the paper — re-verify against the
-[released code](https://github.com/AI4Science-WestlakeU/wdno) before quoting):
+[released code](https://github.com/AI4Science-WestlakeU/wdno) before quoting\;
+sources: Tables 1 and 2b of [arXiv:2412.04833v3](https://arxiv.org/html/2412.04833v3)):
 
 | system                              | WDNO   | best competitor | note                           |
 | ----------------------------------- | ------ | --------------- | ------------------------------ |
@@ -300,19 +305,23 @@ Five systems, against raw-space DDPM, FNO, MWT, CNN, OFormer and others
 | 2D smoke control (objective $J$)    | 0.068  | DDPM 0.312      | **78% less leakage**           |
 
 <small>\* ERA5 is ECMWF's global atmospheric reanalysis (hourly estimates on a
-0.25° latitude–longitude grid, 1979–present). The paper uses its **temperature
+0.25° latitude–longitude grid, 1940–present
+[[Copernicus CDS](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview)]).
+The paper uses its **temperature
 field**, with the task of predicting the next 20 hours of evolution from the
-preceding 12 hours of states.</small>
+preceding 12 hours of states
+([Hu et al., 2024](https://arxiv.org/abs/2412.04833)).</small>
 
 The pattern is the series' through-line wearing a new coat: where the solution is
 smooth, a global basis is fine and wavelets buy little (the Burgers row)\; where the
 state carries fronts and shocks, the local basis dominates (the compressible NS
 row). Their Fourier-domain ablation — the identical diffusion pipeline with an FFT
-in place of the DWT — is "significantly inferior" on the shock-heavy system.
+in place of the DWT — is "significantly inferior" on the shock-heavy system
+([Hu et al., 2024](https://arxiv.org/abs/2412.04833), Sec. 4.7, Fig. 5(c)).
 
 ## Crux
 
-[`src/ftx/wdno/`](https://github.com/MarioDanielPanuco/Fourier-Transform) implements
+[`src/ftx/wdno/`](https://github.com/MarioDanielPanuco/FFT-and-Wavelets) implements
 the simulation in a few hundred lines of JAX Python, grown out of
 part 3's WNO. The pipeline, per file:
 
@@ -347,7 +356,8 @@ level. _Why Haar?_ With periodic wrapping, Haar halves each axis exactly (no
 boundary padding), so a level-2 decomposition of a $32 \times 64$ trajectory
 packs into the classic nested layout of exactly $32 \times 64$ — the denoiser can
 be an ordinary image U-Net over the coefficient plane. (The paper uses smoother
-biorthogonal bases, `bior2.4`/`bior1.3`\; Haar keeps the toy's shape bookkeeping
+biorthogonal bases, `bior2.4`/`bior1.3` —
+[Hu et al., 2024](https://arxiv.org/html/2412.04833v3), Secs. 4.1 and 4.4\; Haar keeps this implementation's shape bookkeeping
 trivial at some cost in coefficient sparsity.)
 
 ![A Burgers trajectory heatmap next to its packed 2D Haar coefficient image](02-packed-haar.png)
@@ -409,7 +419,7 @@ from compression is the task: compression may discard the small coefficients,
 whereas a generative model must reproduce their distribution, and it can only
 learn to do so if they are visible to it during training.
 
-![Training curve of the WDNO](03-wdno-loss.png)
+![WDNO training loss on 1D viscous Burgers — DDPM noise-prediction objective](03-wdno-loss.png)
 
 Sixteen held-out initial conditions, one DDPM sample each (300 denoising steps, ~2 s
 total for all sixteen):
@@ -419,10 +429,12 @@ total for all sixteen):
 Mean whole-trajectory rel-L2 ≈ **18%**, with the error visibly concentrated along
 the moving shock — the sample nails the global transport and diffuses about the
 exact front position, which is the honest failure mode for a generative model this
-size. Two caveats before comparing that to the WNO's 9.7%: this metric covers the
-_whole trajectory_ (32 frames, easy early ones and hard late ones) versus the WNO's
-single endpoint\; and one diffusion sample is a draw from a distribution, not a
-posterior mean — averaging several samples per input lowers the number.
+size. This number answers a different question than
+[the WNO of part 3](@/posts/post-3-wavelets-wno/index.md), which was scored on a
+single endpoint field — whole-trajectory and endpoint rel-L2 are not comparable
+quantities, so no side-by-side is offered. A further caveat: one diffusion sample
+is a draw from a distribution, not a posterior mean — averaging several samples
+per input lowers the number.
 
 ## Benchmarks
 
@@ -436,19 +448,19 @@ one minibatch\; one _operator evaluation_ is a single forward pass mapping an
 initial condition to an endpoint\; one _sampled trajectory_ is 300 sequential
 denoiser evaluations.
 
-| quantity                                                             | unit           | CPU   | RTX 5080 | GPU/CPU |
-| -------------------------------------------------------------------- | -------------- | ----- | -------- | ------- |
-| WNO training (batch 32, $n = 256$)                                    | steps/s        | 35.8  | 199.2    | 5.6×    |
-| WNO inference (batch 128)                                             | evaluations/s  | 2,954 | 116,735  | 40×     |
-| WDNO U-Net training (batch 16, $32 \times 64$ coefficient images)     | steps/s        | 9.5   | 183.9    | 19×     |
-| WDNO sampling (batch 16, 300 denoiser calls each)                     | trajectories/s | 2.0   | 3.8      | 1.9×    |
+| quantity                                                          | unit           | CPU   | RTX 5080 | GPU/CPU |
+| ----------------------------------------------------------------- | -------------- | ----- | -------- | ------- |
+| WNO training (batch 32, $n = 256$)                                | steps/s        | 35.8  | 199.2    | 5.6×    |
+| WNO inference (batch 128)                                         | evaluations/s  | 2,954 | 116,735  | 40×     |
+| WDNO U-Net training (batch 16, $32 \times 64$ coefficient images) | steps/s        | 9.5   | 183.9    | 19×     |
+| WDNO sampling (batch 16, 300 denoiser calls each)                 | trajectories/s | 2.0   | 3.8      | 1.9×    |
 
 End-to-end wall time deviates from these rates in one systematic way. The
 training script logs the loss every step, which transfers a scalar to host and
 stalls the GPU pipeline: the WNO's 12,000 steps take 104 s on the GPU (about 60 s
 of computation at the benchmarked rate plus about 44 s of synchronization
 stalls) versus 339 s on the CPU, which is compute-bound and unaffected by the
-transfers. This is also why every published run now records
+transfers. This is also why every published run records
 `jax.default_backend()` in `metrics.json`: device attribution belongs in the
 artifact, not in a figure caption.
 
@@ -456,13 +468,15 @@ The spread of speedups — 1.9× to 40× on the same hardware — is explained b
 arithmetic intensity and kernel count rather than model size. A WNO layer
 executes dozens of small kernels per step (sequential DWT filter convolutions,
 per-subband einsums), each doing little arithmetic per launch, so training is
-launch-latency-bound — a regime WSL2's added launch overhead makes worse\;
+launch-latency-bound — a regime WSL2's added launch overhead
+([NVIDIA developer blog](https://developer.nvidia.com/blog/leveling-up-cuda-performance-on-wsl2-with-new-enhancements/))
+makes worse\;
 batched inference amortizes those launches over 128 inputs at once and reaches
 40×. The WDNO's U-Net spends its time in wide convolutions with substantial
 arithmetic per kernel, hence 19× in training\; its sampling gains only 1.9×
 because 300 denoiser calls are inherently sequential and a batch of 16 small
-images does not saturate the device — larger sampling batches recover most of
-the difference.
+images does not saturate the device — larger sampling batches should recover
+most of the difference (unmeasured).
 
 These numbers are specific to a small 1D system. Two-dimensional fields (the
 paper's smoke-control setting) increase the work per kernel and widen every GPU
@@ -524,22 +538,28 @@ case — same U-Net, same 6,000 steps — and train in 62 s on the RTX 5080.
 structures of the correct width, merging and splitting — but they do not track the
 reference trajectory:
 
-![WDNO samples for Kuramoto–Sivashinsky against the solver: correct texture, no pointwise tracking](06-wdno-ks-samples.png)
+![WDNO samples for Kuramoto–Sivashinsky against the pseudo-spectral IF-RK4 solver: correct texture, no pointwise tracking](06-wdno-ks-samples.png)
 
-The mean whole-trajectory rel-L2 is **115%**, and the per-frame error curve shows
-why this is a property of the problem as much as of the model:
+The per-frame error curve $\varepsilon(t)$ is the informative object here — the
+whole-trajectory mean (115%) is dominated by post-decorrelation frames and is an
+expectedly saturated quantity, not an error in the naive sense:
 
-![Per-frame relative error of KS samples growing toward the square-root-of-2 decorrelation limit](07-wdno-ks-error-growth.png)
+![Per-frame relative error ε(t) of KS samples growing toward the √2 decorrelation limit](07-wdno-ks-error-growth.png)
 
-For two fields with equal energy and no correlation, $\varepsilon =
-\Vert\hat{u} - u\Vert_2 / \Vert u\Vert_2 \to \sqrt{2}$\; the samples reach that
-limit by mid-trajectory. Chaos guarantees some version of this curve for _every_
+For two fields with equal energy and no correlation,
+
+$$
+\varepsilon = \frac{\lVert \hat{u} - u \rVert_2}{\lVert u \rVert_2}
+\\;\longrightarrow\\; \sqrt{2},
+$$
+
+and the samples reach that limit by mid-trajectory. Chaos guarantees some version of this curve for _every_
 method: a positive Lyapunov exponent amplifies any initial discrepancy
 exponentially, and the sample starts with a 34% reconstruction error at frame 0
-(the toy's conditioning is imperfect), so pointwise agreement is lost within a few
+(the model's conditioning is imperfect), so pointwise agreement is lost within a few
 time units. This is the regime where the generative framing stops being a luxury:
 past the predictability horizon the only meaningful questions are distributional.
-On that score the toy is partially successful — the sampled fields carry 92% of
+On that score the model is partially successful — the sampled fields carry 92% of
 the true standard deviation, but their late-time spatial spectrum is distorted,
 over-weighting the largest cells (modes 4–7 carry 2–3× the true energy) and
 under-weighting the mid-band (modes 8–13 at 0.3–0.5×). A model of this size
@@ -553,15 +573,14 @@ now a few lines: pass a different symbol and nonlinearity, regenerate trajectori
 retrain — Kuramoto–Sivashinsky above was exactly that. A roadmap in rough order of
 what each problem would prove:
 
-- **KdV** — solitons and dispersive shocks\; sharp coherent structures that travel
+- **[KdV](https://websites.umich.edu/~millerpd//docs/651_Winter18/Topic02-651-W18.pdf)** — solitons and dispersive shocks\; sharp coherent structures that travel
   and interact, ideal for validating super-resolution on localized features.
-- **Kuramoto–Sivashinsky, done properly** — the first pass above leaves a concrete
+- **Kuramoto–Sivashinsky** — the first pass above leaves a concrete
   target: match the attractor's late-time spectrum, and evaluate distributionally
   (spectra, structure functions) rather than by trajectory error.
 - **Compressible Euler (Sod tube)** — genuine discontinuities: contacts,
   rarefactions, shocks\; the regime where the paper's 25× lives.
-- **FitzHugh–Nagumo** — traveling excitation waves with steep fronts\; the guided
-  control story maps naturally onto spiral-wave suppression (defibrillation).
+- **[FitzHugh–Nagumo](https://arxiv.org/html/2404.11403v2)** — traveling excitation waves with steep fronts\; the guided control story maps naturally onto spiral-wave suppression (defibrillation, neuronal models, data-driven modeling).
 - **Nonlinear Schrödinger** — optical solitons and rogue-wave statistics\; the
   signals crossover.
 
@@ -590,3 +609,49 @@ middle a distribution you can sample and steer.
   (2005) — the classic on exponential integrators for exactly the KdV/KS setups above.
 - Mallat, _A Wavelet Tour of Signal Processing_ — still the reference for everything
   the DWT does here.
+
+## Sources
+
+Grouped by the claim they support\; every URL verified live at time of writing
+(DOI links may show a bot wall to scripts but resolve in a browser).
+
+- **Diffusion models smear abrupt changes and struggle with resolution transfer**
+  (the paper's own motivating premise, stated in its abstract):
+  [Hu et al., 2024, arXiv:2412.04833](https://arxiv.org/abs/2412.04833)\;
+  [OpenReview (ICLR 2025)](https://openreview.net/forum?id=FQhDIGuaJ4).
+- **Benchmark numbers in "What the paper reports"** — all six figures verified
+  against Table 1 (simulation MSE) and Table 2b (2D smoke control objective) of
+  [arXiv:2412.04833v3](https://arxiv.org/html/2412.04833v3) (revised 2025-06-26)\;
+  the "78% less leakage" figure appears verbatim in the abstract of
+  [arXiv:2412.04833](https://arxiv.org/abs/2412.04833).
+- **"Significantly inferior" FFT-vs-DWT ablation quote**:
+  [Hu et al., 2024](https://arxiv.org/abs/2412.04833), Sec. 4.7 (Ablation Study),
+  Fig. 5(c) — the ablation runs on the 1D compressible Navier–Stokes system.
+- **Raw-space multi-resolution scheme degrades as super-resolution steps stack**:
+  [Hu et al., 2024, Sec. 4.7, Fig. 4(c)](https://arxiv.org/html/2412.04833v3#S4.SS7).
+- **ERA5 dataset specifics** (hourly estimates, regular 0.25° lat–lon grid):
+  [Copernicus CDS, ERA5 single levels overview](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview)
+  — note CDS states coverage from **1940 onwards**\;
+  the 12-hour-history → 20-hour-forecast temperature task:
+  [Hu et al., 2024](https://arxiv.org/abs/2412.04833).
+- **Guided-sampling update equation**: Eq. 4 of
+  [Hu et al., 2024](https://arxiv.org/html/2412.04833v3), Sec. 3.1 (including
+  evaluating $J$ at the DDPM clean-sample estimate)\; general gradient-guidance
+  lineage: [Dhariwal & Nichol, 2021, arXiv:2105.05233](https://arxiv.org/abs/2105.05233).
+- **The 2/3 dealiasing rule is exact for quadratic nonlinearities**:
+  [Orszag, 1971, J. Atmos. Sci. 28:1074](https://doi.org/10.1175/1520-0469%281971%29028%3C1074:OTEOAI%3E2.0.CO;2)\;
+  corroborated by
+  [Giacomini & Giometto, GMD 2017 preprint](https://gmd.copernicus.org/preprints/gmd-2017-272/gmd-2017-272.pdf),
+  [Bowman, "Origin of the 2/3 Rule" (IPAM slides)](http://helper.ipam.ucla.edu/publications/mtws1/mtws1_12187.pdf),
+  and the [FourierFlows.jl aliasing docs](https://fourierflows.github.io/FourierFlowsDocumentation/stable/aliasing/).
+  "Exact" means the retained two-thirds of modes are alias-free (equivalently the
+  padded 3/2 rule), not that the product's full spectrum is resolved.
+- **Wavelet bases `bior2.4`/`bior1.3` in the paper**:
+  [Hu et al., 2024](https://arxiv.org/html/2412.04833v3), Sec. 4.1 (`bior2.4`,
+  1D Burgers) and Sec. 4.4 (`bior1.3`, 2D incompressible fluid).
+- **WSL2 adds GPU kernel-launch overhead in launch-latency-bound regimes**:
+  [NVIDIA, "Leveling up CUDA Performance on WSL2 with New Enhancements"](https://developer.nvidia.com/blog/leveling-up-cuda-performance-on-wsl2-with-new-enhancements/)
+  (vendor engineering blog, the primary source for the WSL2 CUDA driver path).
+- **The WNO's 9.7% endpoint rel-L2**:
+  [part 3 of this series](@/posts/post-3-wavelets-wno/index.md), training-curve
+  figure (test rel-L2 = 0.097).
