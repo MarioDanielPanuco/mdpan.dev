@@ -7,3 +7,9 @@
 ./content/projects/project_5.md
 
 .DS_Store
+
+# brainstorming companion
+.superpowers/
+
+/.quarto/
+**/*.quarto_ipynb

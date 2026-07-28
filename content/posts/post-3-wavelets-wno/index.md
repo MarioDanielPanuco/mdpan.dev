@@ -10,7 +10,7 @@ _This is part 3 of a 4-part series
 ([part 1](@/posts/post-1-origins/index.md): Euler's formula and Fourier series\;
 [part 2](@/posts/post-2-dft-fft/index.md): the DFT, FFT, and spectral methods).
 Figures and the trained model are reproducible from
-[the repo](https://github.com/MarioDanielPanuco/Fourier-Transform):
+[the repo](https://github.com/MarioDanielPanuco/FFT-and-Wavelets):
 `pixi run wno-train`, then `pixi run figs-post3`._
 
 ## Fourier's blind spot
@@ -87,7 +87,10 @@ computation you want the opposite: a basis.
 [Mallat](https://doi.org/10.1109/34.192463) and
 [Daubechies](https://doi.org/10.1002/cpa.3160410705) showed you can
 choose scales $a = 2^j$ and shifts $b = k \cdot 2^j$ and, for the right $\psi$, get an
-**orthonormal basis** — no information lost, none duplicated.
+**orthonormal basis** — a set of mutually orthogonal, unit-norm functions: no
+information lost, none duplicated. (The same structure as the eigenfunction
+bases of [Sturm–Liouville problems](https://en.wikipedia.org/wiki/Sturm%E2%80%93Liouville_theory)
+— a connection I keep in my own TA section notes on eigenpairs.)
 [Daubechies' families](https://en.wikipedia.org/wiki/Daubechies_wavelet)
 (db2, db3, db4...) are compactly supported: each basis function touches only a few
 samples.
@@ -172,7 +175,7 @@ non-periodic, and boundary-dominated problems.
 ## A minimal WNO in JAX
 
 Everything below is in the repo under
-[`src/ftx/wno/`](https://github.com/MarioDanielPanuco/Fourier-Transform) — four short
+[`src/ftx/wno/`](https://github.com/MarioDanielPanuco/FFT-and-Wavelets) — four short
 files, pure JAX plus [jaxwt](https://github.com/v0lta/Jax-Wavelet-Toolbox) for a
 differentiable DWT.
 
@@ -222,7 +225,8 @@ Parameters live in a plain pytree dict\; no framework. Training is `optax.adam` 
 relative L2 loss $\lVert \hat{u} - u \rVert_2 / \lVert u \rVert_2$ — 104 seconds on an
 RTX 5080, about 5–6 minutes on a CPU. (The wall-clock gap understates the hardware
 difference: per training step the GPU is 5.6× faster, and ~40× on batched inference —
-`pixi run wno-bench`, analyzed in part 4 (forthcoming). This loop
+`pixi run wno-bench`, analyzed in
+[part 4](@/posts/post-4-wdno/index.md). This loop
 fetches the loss to host every step for logging, which stalls the GPU\; the run's
 device is recorded in `metrics.json`.) The repo ships a pixi `cuda` environment
 (JAX + CUDA 12 on WSL2).
@@ -259,9 +263,6 @@ hundred lines you can read in one sitting.
 
 The through-line of all three posts is one move, inherited from a rejected 1807
 memoir: _find the basis that makes your operator simple, act there, and come back._
-Euler's formula supplied the basis\; the FFT made the round trip cheap\; wavelets
-rebuilt the basis for a world with edges\; and neural operators let the data choose
-what to do in the middle.
 
 ### Further reading
 
@@ -273,4 +274,5 @@ what to do in the middle.
 - Li et al., ["Fourier Neural Operator for Parametric PDEs"](https://arxiv.org/abs/2010.08895) (2020).
 - Tripura & Chakraborty, ["Wavelet Neural Operator for solving parametric PDEs"](https://arxiv.org/abs/2205.02191) (2022).
 - Kovachki et al., ["Neural Operator: Learning Maps Between Function Spaces"](https://arxiv.org/abs/2108.08481) (2021) — the general theory.
-- Hu et al., ["Wavelet Diffusion Neural Operator"](https://arxiv.org/abs/2412.04833) (2024) — the generative sequel: diffusion models run in wavelet space over whole trajectories, for simulation _and_ control. Now the subject of part 4 (forthcoming).
+- Hu et al., ["Wavelet Diffusion Neural Operator"](https://arxiv.org/abs/2412.04833) (2024) — the generative sequel: diffusion models run in wavelet space over whole trajectories, for simulation _and_ control. Now the subject of
+[part 4](@/posts/post-4-wdno/index.md).
