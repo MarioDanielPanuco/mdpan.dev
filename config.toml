@@ -80,4 +80,5 @@ socials = [
 ]
 
 custom_css = []
-stylesheets = ["custom.css"]
+# Flip this line's comment to A/B the custom typography against stock apollo.
+# stylesheets = ["custom.css"]
