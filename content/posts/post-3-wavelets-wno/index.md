@@ -129,8 +129,8 @@ concisely:
 
 _(The formal scaffolding behind this —
 [multiresolution analysis](https://en.wikipedia.org/wiki/Multiresolution_analysis) —
-is a nested ladder of approximation spaces $V_0 \subset V_1 \subset \cdots$ with $V_{j+1} = V_j \oplus
-W_j$\; the wavelets span the detail spaces $W_j$. Mallat's book has the full story.)_
+is a nested ladder of approximation spaces $V_0 \subset V_1 \subset \cdots$ with $V_{j+1} = V*j \oplus
+W_j$\; the wavelets span the detail spaces $W_j$. Mallat's book has the full story.)*
 
 ## Neural operators in one section
 
@@ -226,7 +226,7 @@ relative L2 loss $\lVert \hat{u} - u \rVert_2 / \lVert u \rVert_2$ — 104 secon
 RTX 5080, about 5–6 minutes on a CPU. (The wall-clock gap understates the hardware
 difference: per training step the GPU is 5.6× faster, and ~40× on batched inference —
 `pixi run wno-bench`, analyzed in
-[part 4](@/posts/post-4-wdno/index.md). This loop
+part 4. This loop
 fetches the loss to host every step for logging, which stalls the GPU\; the run's
 device is recorded in `metrics.json`.) The repo ships a pixi `cuda` environment
 (JAX + CUDA 12 on WSL2).
@@ -275,4 +275,4 @@ memoir: _find the basis that makes your operator simple, act there, and come bac
 - Tripura & Chakraborty, ["Wavelet Neural Operator for solving parametric PDEs"](https://arxiv.org/abs/2205.02191) (2022).
 - Kovachki et al., ["Neural Operator: Learning Maps Between Function Spaces"](https://arxiv.org/abs/2108.08481) (2021) — the general theory.
 - Hu et al., ["Wavelet Diffusion Neural Operator"](https://arxiv.org/abs/2412.04833) (2024) — the generative sequel: diffusion models run in wavelet space over whole trajectories, for simulation _and_ control. Now the subject of
-[part 4](@/posts/post-4-wdno/index.md).
+  <!-- [part 4](@/posts/post-4-wdno/index.md). -->

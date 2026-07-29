@@ -268,7 +268,7 @@ different problems:
   — a real-valued cousin of the DFT — throwing away the high-frequency coefficients
   your eye won't miss.
 
-None of these fields set out to do "Fourier analysis." Each found that its signals,
+None of these fields set out to do "Fourier analysis." Each independently found that its signals,
 when written in the basis of oscillations, became simple — because waves, diffusion,
 and periodic motion are what the physical world is made of, and this is the basis that
 diagonalizes them. That is the recurring miracle of applied math: a representation
@@ -277,12 +277,13 @@ committed to.
 
 ## Where this goes
 
-**Part 2** discretizes: the Fourier series becomes the DFT (a matrix), the FFT makes
-it fast, and the convolution theorem plus spectral derivatives make it useful — with
-detours through sampling, aliasing, and what a spectrogram of an actual song looks
-like. **Part 3** covers what Fourier _can't_ do — localize in time and frequency at
+**Part 2** Creates a computational discretization of Fourier-Transform: the Fourier series
+becomes the DFT (a matrix), the FFT makes it fast, and the convolution theorem plus spectral
+derivatives make it useful — with detours through sampling, aliasing, and what a spectrogram
+of an actual song lookslike.
+**Part 3** covers what Fourier _can't_ do — localize in time and frequency at
 once — and follows wavelets to a modern endpoint: wavelet neural operators, trained in
-JAX on Burgers' equation.
+JAX on a simple 1D Burgers' equation.
 
 ### Further reading
 
