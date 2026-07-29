@@ -1,0 +1,39 @@
+// Site-level overrides on top of the vendored apollo theme.
+// Loaded after main.css via config.extra.stylesheets.
+
+// Epigraph: the theme hardcodes #737373, which is ~4.0:1 on the dark
+// background (--bg-0: #121212). --text-1 is defined per-mode and clears AA
+// in both.
+blockquote {
+  color: var(--text-1);
+
+  cite {
+    display: block;
+    margin-top: 0.5em;
+    text-align: right;
+    font-style: normal;
+
+    &::before {
+      content: "— ";
+    }
+  }
+}
+
+// Homepage prose only: the theme's 1000px column runs ~90 characters in
+// JetBrains Mono. Post bodies keep the full width for figures and tables.
+main article section.body {
+  > p,
+  > blockquote {
+    max-width: 68ch;
+  }
+
+  // main.scss sets html { line-height: 1.6em }, _misc.scss sets p { 1.5 }.
+  > p {
+    line-height: 1.65;
+  }
+
+  // ## Contact sits at 1.2rem; give the contact line room to breathe.
+  > h2 + p {
+    margin-top: 0.85em;
+  }
+}

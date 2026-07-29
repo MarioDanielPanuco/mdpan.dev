@@ -80,3 +80,4 @@ socials = [
 ]
 
 custom_css = []
+stylesheets = ["custom.css"]
