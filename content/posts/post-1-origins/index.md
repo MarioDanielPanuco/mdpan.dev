@@ -189,12 +189,10 @@ function. For the square wave, six circles already do a passable job:
 
 ![Six chained rotating circles tracing out a square wave](07-epicycles-square.gif)
 
-This is Ptolemy's machinery pointed at a waveform instead of a planet — and it's
-honest mathematics, not just a pretty picture. The largest circle is the fundamental\;
+This is Ptolemy's machinery pointed at a waveform instead of a planet. The largest circle is the fundamental\;
 each smaller, faster circle is a correction term. (The same construction with complex
-coefficients traces closed curves in the plane, which is how those "draw anything with
-epicycles" animations work: sample the outline, compute the coefficients — by the end
-of part 2 you'll know the fast way — and chain the phasors.)
+coefficients traces closed curves in the plane: sample the outline, compute the coefficients — by the end
+of part 2 you'll know the fast way (FFT) — and chain the phasors.)
 
 ## Why sines? Ask the heat equation
 
@@ -222,20 +220,18 @@ while its spectrum collapses from the high end:
 
 ![A jagged temperature profile smoothing out as its high-frequency modes decay](08-heat-decay.gif)
 
-This is why Fourier invented the series: the right basis turns a partial differential
+The right basis turns a partial differential
 equation into a family of independent, trivially solvable ordinary ones. _Diagonalize
-the operator, and the physics falls apart into non-interacting pieces._ That single
-move — change to the basis where your operator is diagonal — is the through-line of
-this series. In part 2 it becomes the FFT and spectral methods\; in part 3, the
+the operator, and the physics falls apart into non-interacting pieces._
+In part 2 it becomes the FFT and spectral methods\; in part 3, the
 "diagonalize, act, transform back" pattern returns with learned weights in the middle,
 as a neural operator.
 
 ## One idea, rediscovered everywhere
 
-There is a final historical point worth making, because it's the best argument I know
-for the "unreasonable effectiveness" of applied mathematics. Fourier's decomposition
+There is a final historical point worth making. Fourier's decomposition
 wasn't invented once — nature kept forcing it on people who were looking at completely
-different problems:
+isolated problems:
 
 - **Astronomy.** Ptolemy's
   [epicycles](https://en.wikipedia.org/wiki/Deferent_and_epicycle) _are_ a finite
@@ -268,12 +264,12 @@ different problems:
   — a real-valued cousin of the DFT — throwing away the high-frequency coefficients
   your eye won't miss.
 
-None of these fields set out to do "Fourier analysis." Each independently found that its signals,
+Each independently found that its signals,
 when written in the basis of oscillations, became simple — because waves, diffusion,
-and periodic motion are what the physical world is made of, and this is the basis that
+and periodic motion closely model our observable physical world, and this is the basis that
 diagonalizes them. That is the recurring miracle of applied math: a representation
 invented to settle an argument about heat turns out to be something nature had already
-committed to.
+committed to multiple physical domains.
 
 ## Where this goes
 
