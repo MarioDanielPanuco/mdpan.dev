@@ -3,7 +3,7 @@ title = "Beyond Fourier: Wavelets and a Crash Course on Wavelet Neural Operators
 description = "Part 3 of a series on the Fourier transform: the time-frequency tradeoff, multiresolution analysis, and training a minimal wavelet neural operator on Burgers' equation in JAX."
 date = 2026-07-04
 [taxonomies]
-tags = ["math", "fourier", "wavelets", "jax", "machine-learning", "scientific-computing"]
+tags = ["math", "sci-ml", "neural-operators", "fourier", "wavelets", "jax", "machine-learning", "scientific-computing"]
 +++
 
 _This is part 3 of a 4-part series
@@ -16,15 +16,13 @@ Figures and the trained model are reproducible from
 ## Fourier's blind spot
 
 A Fourier coefficient is an integral over _all_ time. The basis function
-$e^{i\omega t}$ has perfect frequency and no location — it rings forever. So a
+$e^{i\omega t}$ has perfect frequency and no location. So a
 spectrum answers "what frequencies are present?" but is structurally incapable of
 answering "_when_?" A drum hit at $t = 3\\,\mathrm{s}$ and the same hit at
-$t = 30\\,\mathrm{s}$ have the same magnitude spectrum\; all the timing hides in the
-phase, scrambled across every coefficient.
+$t = 30\\,\mathrm{s}$ have the same magnitude spectrum.
 
-Part 2's fix was the spectrogram: window the signal, transform each slice. But the
-window length is a contract you sign in advance. Take a signal with both a slow chirp
-and a 2-millisecond click, and no single window serves both clients:
+Take a signal with both a slow chirp and a 2-millisecond click, and no single
+window serves both clients:
 
 ![The same signal analyzed with a short window and a long window: each smears what the other resolves](01-stft-tradeoff.png)
 
@@ -38,8 +36,7 @@ $$
 \Delta t \cdot \Delta \omega \ge \frac{1}{2}.
 $$
 
-You cannot beat the bound. What you _can_ do is spend it differently at different
-frequencies — and that observation is the whole wavelet idea.
+You cannot object to the bounds set the inequality. However, you _can_ chose spend it wisely at different frequencies using wavelets.
 
 ## Wavelets: constant-Q tiling
 
@@ -82,22 +79,20 @@ _wave_.)
 
 ## The DWT: Mallat's pyramid
 
-The CWT is gloriously redundant — a whole 2D picture from a 1D signal. For
-computation you want the opposite: a basis.
+The CWT is gloriously redundant. For computation you want the opposite: a basis.
 [Mallat](https://doi.org/10.1109/34.192463) and
 [Daubechies](https://doi.org/10.1002/cpa.3160410705) showed you can
-choose scales $a = 2^j$ and shifts $b = k \cdot 2^j$ and, for the right $\psi$, get an
-**orthonormal basis** — a set of mutually orthogonal, unit-norm functions: no
-information lost, none duplicated. (The same structure as the eigenfunction
-bases of [Sturm–Liouville problems](https://en.wikipedia.org/wiki/Sturm%E2%80%93Liouville_theory)
-— a connection I keep in my own TA section notes on eigenpairs.)
+choose scales $a = 2^j$ and shifts $b = k \cdot 2^j$ and, for the appropriate $\psi$, get an
+**orthonormal basis** — a set of mutually orthogonal, unit-norm functions.
+(The same structure as the eigenfunction bases of
+[Sturm–Liouville problems](https://en.wikipedia.org/wiki/Sturm%E2%80%93Liouville_theory).)
 [Daubechies' families](https://en.wikipedia.org/wiki/Daubechies_wavelet)
 (db2, db3, db4...) are compactly supported: each basis function touches only a few
 samples.
 
 The algorithm is a two-channel filter bank. Convolve with a lowpass filter $h$ and a
 highpass filter $g$, downsample each by 2 (safe _because_ the filters halved the
-band — part 2's aliasing lesson), then recurse on the lowpass half:
+band via aliasing), then recurse on the lowpass half:
 
 $$
 x \longrightarrow (\\,\mathrm{cA}_1, \mathrm{cD}_1\\,)
@@ -113,11 +108,10 @@ step, and a spike, using the simplest wavelet
 
 ![Haar wavelet coefficients of a signal with a step and a spike, level by level](05-haar-pyramid.png)
 
-The point to stare at: the spike and the step stay **findable at every level** — a
-handful of large coefficients sitting at the right location. A Fourier basis would
-democratically smear them across all frequencies. This is Fourier's Gibbs problem
-from part 1, solved by changing basis. The consequence is _sparsity_, and it's why
-this transform runs your world quietly:
+The point to stare at: the spike and the step stay **findable at every level**.
+A Fourier basis would uniformly smear them across all frequencies.
+This is Fourier's Gibbs problem from part 1, solved by changing basis.
+The consequence is _sparsity_, and it's why this transform runs your world quietly:
 [JPEG 2000](https://en.wikipedia.org/wiki/JPEG_2000) compresses images with it,
 denoisers threshold small wavelet coefficients
 ([Donoho's soft thresholding](https://doi.org/10.1109/18.382009)), and FBI
@@ -134,12 +128,14 @@ W_j$\; the wavelets span the detail spaces $W_j$. Mallat's book has the full sto
 
 ## Neural operators in one section
 
-Now the modern part. Classical networks learn functions between finite-dimensional
-spaces. An **operator** maps functions to functions — like "initial condition
-$\mapsto$ PDE solution at time $T$", which is exactly the map we solved numerically
+Classical neural network deep learning learns functions between finite-dimensional
+spaces, the shape of the input and output data is fixed while training.
+
+An **operator** maps functions to functions — like "initial condition
+$\mapsto$ PDE solution at time $T$", which is computational map we solved numerically
 in part 2's spectral-methods section. Operator learning trains a network
-$G_\theta : u_0(\cdot) \mapsto u(\cdot, T)$ once, then evaluates it in microseconds
-per new input — a _surrogate solver_. Done right it is **discretization-invariant**:
+$G_\theta : u_0(\cdot) \mapsto u(\cdot, T)$ once, then evaluates it per new input
+— a _surrogate solver_. Done right it is **discretization-invariant**:
 the same weights work at any grid resolution, because the layers act on functions,
 not pixel vectors.
 
@@ -181,7 +177,7 @@ differentiable DWT.
 
 **The problem.** Viscous
 [Burgers' equation](https://en.wikipedia.org/wiki/Burgers%27_equation) on the periodic
-unit interval — the classic toy for "smooth in, sharp out":
+unit interval — "smooth in, sharp out":
 
 $$
 \frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x}
@@ -191,12 +187,11 @@ $$
 
 Learn the operator $u(\cdot, 0) \mapsto u(\cdot, 0.5)$ on a 256-point grid.
 
-**The data** is part 2 made executable: 1,128 random smooth initial conditions
+**The data**: 1,128 random smooth initial conditions
 (Fourier coefficients with $1/k^2$ amplitudes), each integrated pseudo-spectrally —
 derivatives via `rfft`/`irfft`, 2/3-rule dealiasing, integrating-factor RK4 so the
 stiff diffusion term is handled exactly. `jax.vmap` over samples, `jax.lax.scan` over
-time\; the whole dataset generates in seconds on a CPU. The advection term steepens
-every smooth start into fronts:
+time\; The advection term steepens every smooth start into fronts:
 
 ![Sample Burgers initial conditions and their sharpened evolutions](08-burgers-samples.png)
 
@@ -219,24 +214,21 @@ def _wno_block(p, v):                      # v: (batch, n, width)
     return jax.nn.gelu(wave + v @ p["skip"]["w"] + p["skip"]["b"])
 ```
 
-That `einsum` is the exact analogue of the FNO's $R_\theta$: an independent learnable
+That `einsum` is the analogue of the FNO's $R_\theta$: an independent learnable
 channel-mixing matrix _per wavelet coefficient_, applied only on the coarse subbands.
 Parameters live in a plain pytree dict\; no framework. Training is `optax.adam` on the
 relative L2 loss $\lVert \hat{u} - u \rVert_2 / \lVert u \rVert_2$ — 104 seconds on an
 RTX 5080, about 5–6 minutes on a CPU. (The wall-clock gap understates the hardware
 difference: per training step the GPU is 5.6× faster, and ~40× on batched inference —
-`pixi run wno-bench`, analyzed in
-part 4. This loop
-fetches the loss to host every step for logging, which stalls the GPU\; the run's
-device is recorded in `metrics.json`.) The repo ships a pixi `cuda` environment
+`pixi run wno-bench`, analyzed in part 4.
+This loop fetches the loss to host every step for logging, which stalls the GPU\;
+the run's device is recorded in `metrics.json`.) The repo ships a pixi `cuda` environment
 (JAX + CUDA 12 on WSL2).
 
-One training trick earns its sentence. Burgers on a periodic domain is
-translation-equivariant — shift the initial condition, the solution shifts with it —
-but the DWT is _not_ shift-invariant (unlike the FFT, whose modes just pick up a
+Burgers on a periodic domain is translation-equivariant — shift the initial condition, the solution shifts with it, but the DWT is _not_ shift-invariant (unlike the FFT, whose modes just pick up a
 phase). The model can't inherit the symmetry from its architecture, so we teach it by
 augmentation: every batch applies a random circular shift to each input-output pair.
-In our runs this one change cut test error by a third and closed the train-test gap
+In our runs this one change cut test error by a third and closed the gap between train-test accuracy
 almost entirely:
 
 ![WNO training curve with final test error marked](09-wno-loss.png)
@@ -245,9 +237,8 @@ almost entirely:
 
 A model this small, trained for minutes, won't match the sub-1% errors of full-size
 neural operators — the published WNO uses wider channels, more levels, and longer
-training. What the demo is for: every conceptual ingredient — DWT in, learned weights
-on coefficients, IDWT out, one forward pass replacing 500 solver steps — in a few
-hundred lines you can read in one sitting.
+training. However, we can still build this smaller model to understand the conceptual ingredients
+— DWT in, learned weights on coefficients, IDWT out, one forward pass replacing 500 solver steps.
 
 ## When to reach for which
 
