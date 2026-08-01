@@ -17,12 +17,12 @@ Science Engineering undergrad.
 and the numerical questions that decide whether a learned solver can be trusted —
 discretization error, universal approximation, stability, and how to measure
 accuracy honestly on chaotic systems. Latest work is a wavelet diffusion neural
-operator on the Kuramoto–Sivashinsky equation, alongside Monte Carlo methods.
+operator on the Kuramoto–Sivashinsky equation.
 
-Problems I find particularly interesting: operator learning for multiphysics **inverse** problems
-— computational imaging and wave reconstruction, inverse electrophysiology of the
-brain, and digital-twin/control settings. Computational fluid dynamics and computational
-genomics are standing interests as well.
+I'm particularly interested by: operator learning for multiphysics **inverse** problems
+— computational imaging and wave reconstruction, neueral operators as PDE surrogates for inference,
+inverse electrophysiology of the brain, and digital-twin/control settings. Computational fluid dynamics
+and computational genomics are standing interests as well.
 
 Elsewhere: [/projects](@/projects/_index.md) — a graph-diffusion risk-scoring
 prototype, an HTTP server in C, and a genetic-algorithm-trained neural network in

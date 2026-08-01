@@ -5,7 +5,7 @@ weight = 1
 
 date="2024-10-05"
 [taxonomies]
-tags=["C", "projects"]
+tags=["C", "projects", "systems"]
 [extra]
 # You can also crop the image in the url by adjusting w=/h=
 remote_image = "https://mdpan.dev/images/http-project-image.png"
@@ -29,6 +29,9 @@ TODO: Fill out from report
 <!-- - PUT:  -->
 <!-- - APPEND:  -->
 <!---->
+#### Comparision with OSS HTTP server alternatives 
+- NGIX 
+- 
 
 
 ### POSIX 
