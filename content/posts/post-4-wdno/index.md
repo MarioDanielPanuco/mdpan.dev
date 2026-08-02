@@ -1119,6 +1119,11 @@ middle a distribution you can sample and steer.
 
 Grouped by the claim they support.
 
+- **Kuramoto-Shivinsky Equation**: 
+[Kuramoto-Shivinsky Equation]()
+[Evolving Planar Flame Front]()
+[PDEs with nonlinear/chaotic behavior]()
+[Stability of pole solutions for planar propagating flames](https://epubs.siam.org/doi/10.1137/S0036139998346439)
 - **Diffusion models smear abrupt changes and struggle with resolution transfer**
   (the paper's own motivating premise, stated in its abstract):
   [Hu et al., 2024, arXiv:2412.04833](https://arxiv.org/abs/2412.04833)\;
@@ -1160,9 +1165,7 @@ Grouped by the claim they support.
   Lax–Friedrichs CFL bound**:
   [D. Venturi, AM 213B lecture notes, ch. 10 (UCSC), archived PDF](https://web.archive.org/web/20250327044646/https://venturi.soe.ucsc.edu/sites/default/files/CHAPTER_10_Numerical_methods_for_the_advection_equation_0.pdf)
   — Eqs. 26–32 (mode ansatz, amplification factors, the practically-unstable
-  centered scheme) and Eqs. 47–49 (Lax–Friedrichs, Courant number)\; the live
-  `venturi.soe.ucsc.edu` site has since migrated, hence the archive link.
-  Method background,
+  centered scheme) and Eqs. 47–49 (Lax–Friedrichs, Courant number)
   [von Neumann stability analysis](https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis)\;
   condition lineage,
   [Courant–Friedrichs–Lewy](https://en.wikipedia.org/wiki/Courant%E2%80%93Friedrichs%E2%80%93Lewy_condition).
