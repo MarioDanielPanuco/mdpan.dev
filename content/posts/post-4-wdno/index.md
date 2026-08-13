@@ -230,8 +230,7 @@ an account of its own error — where it converges, at what rate, and when it is
 stable. The scheme has exactly three error sources, and each has a classical
 analysis.
 
-Every solver-side computation in this post — error measurements
-and dataset generation alike — is performed in **double precision**: float64
+All solver-side computation in this post are performed in **double precision**: float64
 solves against float64 references, norms accumulated in float64,
 trajectories saved as float64. Single-precision "convergence floors" measure
 the arithmetic, not the discretization. The float32 boundary sits
@@ -1074,9 +1073,8 @@ round-off noise, amplified by the flow.</small>
 ## Where to take it
 
 The point of making the solver equation-agnostic is that every next experiment is
-now a few lines: pass a different symbol and nonlinearity, regenerate trajectories,
-retrain — Kuramoto–Sivashinsky above was exactly that. A roadmap in rough order of
-what each problem would prove:
+now a few lines: pass different symbol and nonlinearity terms, regenerate trajectories,
+retrain. A roadmap in rough order of what each problem :
 
 - **[KdV](https://websites.umich.edu/~millerpd//docs/651_Winter18/Topic02-651-W18.pdf)** — solitons and dispersive shocks\; sharp coherent structures that travel
   and interact, ideal for validating super-resolution on localized features.
@@ -1119,11 +1117,11 @@ middle a distribution you can sample and steer.
 
 Grouped by the claim they support.
 
-- **Kuramoto-Shivinsky Equation**: 
-[Kuramoto-Shivinsky Equation]()
-[Evolving Planar Flame Front]()
-[PDEs with nonlinear/chaotic behavior]()
-[Stability of pole solutions for planar propagating flames](https://epubs.siam.org/doi/10.1137/S0036139998346439)
+- **Kuramoto-Shivinsky Equation**:
+  [Kuramoto-Shivinsky Equation]()
+  [Evolving Planar Flame Front]()
+  [PDEs with nonlinear/chaotic behavior]()
+  [Stability of pole solutions for planar propagating flames](https://epubs.siam.org/doi/10.1137/S0036139998346439)
 - **Diffusion models smear abrupt changes and struggle with resolution transfer**
   (the paper's own motivating premise, stated in its abstract):
   [Hu et al., 2024, arXiv:2412.04833](https://arxiv.org/abs/2412.04833)\;
