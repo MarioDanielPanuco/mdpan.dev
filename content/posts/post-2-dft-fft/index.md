@@ -39,9 +39,9 @@ as you read downward:
 
 ![Real and imaginary parts of the 16-point DFT matrix](02-dft-matrix.png)
 
-The orthogonality of complex exponentials survives discretization exactly:
-$W^* W = N I$, so $W/\sqrt{N}$ is unitary. The DFT is a rigid rotation of
-$\mathbb{C}^N$ — no information created or destroyed, just re-expressed.
+The orthogonality of complex exponentials survives discretization:
+$W^* W = N I$, so $W/\sqrt{N}$ is unitary. Moreover, the DFT is a rigid rotation of
+$\mathbb{C}^N$ — no information created or destroyed.
 [Parseval's theorem](https://en.wikipedia.org/wiki/Parseval%27s_theorem)
 ($\sum |x_n|^2 = \frac{1}{N}\sum |X_k|^2$) is nothing more than "rotations
 preserve length."
@@ -208,19 +208,15 @@ everywhere. First, the DFT is the
 [**z-transform**](https://en.wikipedia.org/wiki/Z-transform)
 $X(z) = \sum x_n z^{-n}$ evaluated at $N$ points on the unit circle — digital filter design is complex analysis on that
 circle, poles inside for stability. Second, evaluating a _polynomial_ on the roots
-of unity is exactly what the FFT does, which is why it multiplies polynomials fast —
+of unity is what the FFT does, which is why it multiplies polynomials fast —
 and evaluating a _Laurent series_ on the circle connects the decay rate of Fourier
-coefficients to the width of the strip where the function is analytic. Smoothness in
-one domain is decay in the other, in both directions.
+coefficients to the width of the strip where the function is analytic.
 
 ## Where this goes
 
-To pull back, we can think of all spectral methods in the following three-steps: **transform, act diagonally,
-transform back**. Denoising: zero some bins. Differentiation: multiply by $ik$.
-Heat flow: multiply by $e^{-\nu k^2 t}$. In part 3 the
-diagonal action is _learned from data_ — a Fourier neural operator — then swap the
-FFT for a wavelet transform to get localization in both time and frequency, and
-train a wavelet neural operator on Burgers' equation in JAX.
+To pull back, we can think of spectral methods in the following three-steps: **transform, act diagonally, transform back**.
+Denoising: zero some bins. Differentiation: multiply by $ik$.
+Heat flow: multiply by $e^{-\nu k^2 t}$.
 
 ### Further reading
 
