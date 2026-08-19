@@ -1,7 +1,7 @@
 +++
 title = "Graph Diffusion for Payment-Integrity Risk Scoring"
 date = "2026-06-14"
-weight = 1
+weight = 2
 
 description = "Inside a synthetic-data prototype that scores public-finance payments for fraud risk: a JAX logistic regression classifier, an anomaly detector, and a graph-diffusion 'guilt by association' feature -- with the spectral math and the plots that come out of it."
 
