@@ -203,8 +203,7 @@ equation data for training a neural operator is generated exactly this way —
 derivatives by $ik$ multiplication in Fourier space, time-stepping in physical
 space.
 
-Two complex-analysis footnotes deserve a sentence each, because they reappear
-everywhere. First, the DFT is the
+Two complex-analysis footnotes deserve a mention because they commonly arise in Scientific Computational methods. First, the DFT is the
 [**z-transform**](https://en.wikipedia.org/wiki/Z-transform)
 $X(z) = \sum x_n z^{-n}$ evaluated at $N$ points on the unit circle — digital filter design is complex analysis on that
 circle, poles inside for stability. Second, evaluating a _polynomial_ on the roots
@@ -227,4 +226,4 @@ Heat flow: multiply by $e^{-\nu k^2 t}$.
   (1984) — the 1805 notebook story.
 - Cooley & Tukey, ["An algorithm for the machine calculation of complex Fourier series"](https://www.ams.org/journals/mcom/1965-19-090/S0025-5718-1965-0178586-1/)
   (_Math. Comp._, 1965) — the original, and it's only five pages.
-- Stanford CS168, mini-project on Fourier methods — the dice-convolution exercise this repo's notebook grew out of.
+- Stanford CS168, mini-project on Fourier methods

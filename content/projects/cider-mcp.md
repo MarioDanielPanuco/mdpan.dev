@@ -1,7 +1,7 @@
 +++
 title = "Cider-MCP"
 description = "MCP server for the music Cider app."
-weight = 1
+weight = 2
 date = "2026-08-18"
 [taxonomies]
 tags=["typescript", "projects", "music"]

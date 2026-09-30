@@ -1,7 +1,7 @@
 +++
 title = "PlankAI"
 description = "Implemented a neural network and set of genetic algorithms in Rust as the engine for 'Plankton' agents that collect food on a board. Front-end webpage for the project was built using WASM, specifically the wasm_bindgen Rust crate."
-weight = 4
+weight = 5
 date = "2024-07-16"
 [taxonomies]
 tags=["rust", "projects"]

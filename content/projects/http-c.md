@@ -1,9 +1,9 @@
 +++
 title = "HTTP-C"
 description = "A POSIX HTTP server written in C"
-weight = 3
+weight = 4
 
-date="2024-10-05"
+date="2023-05-01"
 [taxonomies]
 tags=["C", "projects", "systems"]
 [extra]
